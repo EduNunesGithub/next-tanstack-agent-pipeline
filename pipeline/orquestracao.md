@@ -8,7 +8,7 @@ Pergunta, conversa ou pedido de explicação não é tarefa: responda e pronto.
 
 ## 1. Entenda
 
-Leia o pedido como objetivo: o que o humano quer conseguir e o que isso implica. Tudo o que ele exige (código, testes, norma, padrão) vai na mesma entrega. Explore antes de concluir que falta informação; numa área grande, dê a um `t1` uma ficha de exploração, sem arquivos de escrita, que pede um resumo e não o código.
+Leia o pedido como objetivo: o que o humano quer conseguir e o que isso implica. Tudo o que ele exige (código, testes, norma, padrão) vai na mesma entrega. Confira o estado de adoção em `projeto.md`; se ainda for template e o pedido criar a aplicação, planeje a inicialização de `stack.md`. Explore antes de concluir que falta informação; numa área grande, dê a um `t1` uma ficha de exploração, sem arquivos de escrita, que pede um resumo e não o código.
 
 ## 2. Decida antes de começar
 
@@ -22,39 +22,44 @@ Antes de perguntar por dependência nova, procure alternativa no projeto ou na p
 
 ## 3. Divida em fichas e ondas
 
-Ficha (`ficha.md`) = um resultado verificável com lista fechada de arquivos de escrita. Todo critério vem do pedido, das respostas ou do que o objetivo implica; nada inventado, cortado ou ampliado. Arquivo novo vai para onde as normas e os padrões indicam; sem indicação, para junto do código mais parecido. Não divida o que um implementador faz sozinho sem perder o foco.
+Ficha (`ficha.md`) = um resultado verificável com lista fechada de arquivos de escrita e, quando necessário, artefatos gerados permitidos. Todo critério vem do pedido, das respostas ou do que o objetivo implica; nada inventado, cortado ou ampliado. Para arquivos novos, siga as normas, os padrões e a estrutura existente. Sem referência suficiente, escolha uma organização coerente com a responsabilidade e com a documentação das ferramentas adotadas; `projeto.md` registra fontes reais, não antecipa destinos. Divida quando houver partes independentes, níveis diferentes ou uma decisão que possa ser resolvida antes das réplicas; não fragmente um trabalho coeso só para criar agentes.
 
-Nível pelo raciocínio exigido, não pelo tamanho; na dúvida, o de cima.
+Classifique **cada ficha depois da divisão**, pelo raciocínio que ainda cabe ao implementador, e escolha o menor nível suficiente. Tamanho do pedido, quantidade de arquivos, projeto vazio e nome da tecnologia não determinam nível. Fechar a ficha é definir resultado, contrato e referência; não escrever a implementação inteira no brief para chamá-la de `t0`.
 
-| Nível | Quando |
-| --- | --- |
-| `t0` | Ficha fechada: arquivos, contrato e exemplar dados; nenhuma escolha aberta; aceite por comando ou diff. Réplica de exemplar, texto, estilo com valor do tema, renomeação, correção diagnosticada. |
-| `t1` | Segue exemplar ou padrão existente, mas exige lógica local (estado, condição, validação, casos de teste a derivar) ou ler além do exemplar; defeito de causa conhecida. |
-| `t2` | Primeira instância de padrão, cruza camadas, dados persistidos, integração, causa desconhecida; ou nova tentativa após falha em `t0`/`t1`. |
-| `t3` | Segurança, autenticação, concorrência, migração de dados, desempenho; ou nova tentativa após falha em `t2`. |
+Se a dúvida vem de informação ausente, explore ou complete a ficha. Se restarem decisões complexas, use o nível que as resolve. A classificação de execução não elimina revisão ou checagens exigidas pelo risco.
+
+| Nível | Quando                                                                                                                                                                                                                                                                                                         |
+| ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `t0`  | Resultado e contrato definidos, sem escolhas abertas; referência inequívoca em exemplar, configuração base ou documentação oficial; aceite por comando ou diff. Inclui arquivo novo, configuração rotineira da stack, réplica, texto, estilo com valor do tema, renomeação e correção diagnosticada.           |
+| `t1`  | Solução convencional com lógica local: estado, condição, validação, adaptação documentada, casos de teste a derivar ou exploração delimitada. Pode ser a primeira ocorrência no projeto, se não exigir decidir arquitetura ou contrato.                                                                        |
+| `t2`  | A ficha ainda exige decisões estruturais, compatibilizar contratos ou camadas sem solução definida, projetar persistência ou integração, ou investigar defeito com relações que a exploração local não esclareceu. Primeira instância de um padrão quando sua forma ainda precisa ser projetada.               |
+| `t3`  | Raciocínio difícil sobre segurança, autenticação, concorrência, migração ou desempenho: ameaças, garantias, integridade ou diagnóstico profundo. Configurar uma solução documentada nessas áreas não basta para subir a `t3`; a dificuldade pendente ou o escalonamento da seção 5 precisa justificar o nível. |
+
+**Exemplo de projeto vazio:** criar uma aplicação Next.js não vira uma ficha `t3` por ser "do zero". Com a stack definida, dependências e configurações de resultado determinado podem ser `t0`; uma página com lógica local, `t1`. Uma integração com contrato ainda por projetar pode ser `t2`; autenticação com regras de acesso complexas, `t3`. Cada ficha leva a justificativa do nível em uma frase; o conjunto só sobe se as responsabilidades não puderem ser separadas com segurança.
 
 Fichas da mesma onda rodam em paralelo (todas na mesma mensagem, um agente por ficha) e só se:
 
-- os arquivos de escrita são disjuntos, inclusive os compartilhados de `projeto.md`;
+- os arquivos de escrita e artefatos gerados são disjuntos, inclusive os compartilhados de `projeto.md` e os que comandos escrevem indiretamente;
 - o que cada uma usa já existe no início da onda (quem consome outra vai na onda seguinte);
-- nenhuma toca arquivo protegido, dependência, configuração ou dado persistido;
-- nenhuma é primeira instância de padrão (o exemplar vai sozinho; as réplicas, depois);
+- contratos entre as fichas já estão definidos; o exemplar existe antes das réplicas que o usam;
+- mudanças protegidas estão autorizadas pelo pedido e os comandos de uma ficha não alteram o estado usado pela outra;
 - nenhuma usa recurso exclusivo de `projeto.md`.
 
-Não paralelize defeito de causa desconhecida nem `t3`. Respeite o limite por onda de `projeto.md`. Ordem típica: fundação ou exemplar → réplicas em paralelo → ficha de integração dos arquivos compartilhados.
+Configurações independentes podem rodar em paralelo depois da fundação, se cumprirem esses critérios; serem configurações ou primeiras ocorrências não cria dependência por si só. Instalação e lock, geração com efeitos compartilhados e configuração de um mesmo recurso ficam em uma ficha serial. Não paralelize defeito de causa desconhecida nem `t3`. Respeite o limite efetivo de `projeto.md`. Ordem típica: fundação ou exemplar necessário → partes independentes em paralelo → integração dos arquivos compartilhados.
 
 ## 4. Confira e integre
 
 O relato do implementador não é prova. Em cada onda:
 
-1. Antes de disparar, guarde a linha de base: `git status --short --untracked-files=all`.
+1. Antes de disparar, guarde a linha de base: `git status --short --untracked-files=all` e os diffs ou uma cópia dos arquivos que já tenham mudanças. Sem Git, guarde uma cópia dos arquivos da tarefa. A base precisa permitir distinguir o trabalho novo de alterações anteriores, inclusive no mesmo arquivo.
 2. Em cada retorno, confira se os arquivos estão na ficha e se o diff cumpre `Feito quando` e o contrato. Depois, rode de novo os comandos com escopo sobre a união dos arquivos da onda.
-3. Compare o `git status` com a base: nada fora das fichas, nenhuma supressão nova (marcadores de `projeto.md`); arquivo protegido só fica se a tarefa exige, e é declarado.
+3. Compare arquivos e diffs com a base: nada fora das fichas e dos artefatos permitidos, nenhuma supressão nova (marcadores de `projeto.md`); arquivo protegido só fica se a tarefa exige, e é declarado.
 4. Trate o que veio em `Registro` (seção 6).
-5. Rode as checagens completas de `projeto.md`. Cada quebra é atribuída a uma ficha e vai para a seção 5.
+5. Rode as checagens completas aplicáveis de `projeto.md` quando a onda fechar um estado integrado ou alterar dependências, configuração das checagens ou contrato compartilhado. Não rode build ou suíte antes de seus pré-requisitos existirem, nem repita a suíte completa em ondas independentes já conferidas sem um motivo novo. Cada quebra é atribuída a uma ficha e vai para a seção 5.
 
 Depois da última onda:
 
+- **Checagens completas**, sobre o estado final integrado, conforme `projeto.md`. Se uma checagem acabou de passar nesse mesmo estado e nada mudou, o resultado ainda vale.
 - **Produto**, na medida do risco, como `projeto.md` descreve: mudança visível → olhe a tela; comportamento novo → exercite o fluxo e os casos criados; sinal de risco → exercite também o caminho de falha (acesso negado, dado inválido, exclusão).
 - **Revisor**, se houver sinal de risco: algo de que outras partes vão depender (tela, rota, módulo, componente compartilhado, primeira instância de padrão); dados persistidos, contrato ou URL pública, autenticação, autorização, segurança, pagamento ou exclusão; dependências ou configuração das checagens; mudança extensa ou espalhada por camadas; ou que deu trabalho (várias tentativas, subida de nível).
   - É sempre uma instância nova: nunca fork desta conversa nem continuação de outro revisor.
@@ -74,13 +79,15 @@ Uma ficha falhou se:
 - quebrou a integração;
 - recebeu achado confirmado do revisor.
 
-| Situação | Ação |
-| --- | --- |
-| Defeito diagnosticado (o quê e onde) | Mesmo implementador, se disponível; senão, ficha `t0` de correção. |
-| Sem diagnóstico, ou segunda falha no mesmo nível | Nível de cima, instância nova, ficha com `Falha anterior`; em `t3`, mude a abordagem (outra estratégia ou outra divisão em fichas). |
-| Ficha ambígua ou incompleta | Não é falha: corrija a ficha e reenvie no mesmo nível. Ambiguidade do pedido volta à seção 2. |
-| Ambiente (ferramenta, serviço, credencial) | Bloqueio; nada de contornar enfraquecendo. |
-| Terceira falha da mesma ficha | Pare: entrega parcial com o que funciona, o que falta, por quê e uma recomendação. |
+O nível da nova tentativa vem da causa, não do simples fato de ter havido falha. Uma correção já diagnosticada pode ser `t0` mesmo quando a implementação anterior era `t2` ou `t3`. Falta de referência, contrato ou critério é problema da ficha; não se resolve comprando mais raciocínio.
+
+| Situação                                                                                                   | Ação                                                                                                                                                            |
+| ---------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Defeito diagnosticado (o quê e onde)                                                                       | Mesmo implementador, se disponível; senão, ficha `t0` de correção.                                                                                              |
+| Capacidade insuficiente, falha sem diagnóstico após a conferência, ou segunda falha técnica no mesmo nível | Suba um nível (`t0` → `t1` → `t2` → `t3`), instância nova, ficha com `Falha anterior`; em `t3`, mude a abordagem (outra estratégia ou outra divisão em fichas). |
+| Ficha ambígua ou incompleta                                                                                | Não é falha: corrija a ficha e reenvie no mesmo nível. Ambiguidade do pedido volta à seção 2.                                                                   |
+| Ambiente (ferramenta, serviço, credencial)                                                                 | Bloqueio; nada de contornar enfraquecendo.                                                                                                                      |
+| Terceira falha da mesma ficha                                                                              | Pare: entrega parcial com o que funciona, o que falta, por quê e uma recomendação.                                                                              |
 
 ## 6. Registro
 
@@ -91,6 +98,8 @@ Só você escreve na pipeline.
 - Norma que o pedido exige mudar, ou que não serve mais → mude no mesmo trabalho e declare; se tiver impacto arquitetural, é pergunta da seção 2.
 - O humano disse algo duradouro ("a partir de agora, sempre X") → aplique já e registre como norma (obrigação ou proibição) ou padrão (forma preferida); mostre o texto em uma linha. Se não está claro que é duradouro, vale só para esta tarefa.
 - Instrução da pipeline que causou retrabalho, pergunta desnecessária ou resíduo, ou comportamento de que o humano reclamou → proponha uma vez a correção da causa (de preferência apagando ou simplificando texto), aplique com o ok dele e registre causa, impacto e correção em `impactos/`.
+
+`impactos/` é o histórico de ocorrências reais desta instalação. Na adoção do template, começa vazio; lições da origem já incorporadas às instruções não viram ocorrências do novo projeto. Cada registro usa a data real e descreve causa, efeito observado e correção, sem incidentes hipotéticos.
 
 ## 7. Entregue
 

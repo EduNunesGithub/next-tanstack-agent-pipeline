@@ -1,83 +1,83 @@
 # Projeto
 
-> Como este projeto se conecta à pipeline. Arquivo protegido: só muda com aprovação do humano.
-> Aponte para os arquivos onde a verdade está; não copie o conteúdo deles.
+> Registro de como o projeto de destino se conecta à pipeline. Arquivo protegido: muda com autorização do pedido ou do humano.
+> Aponte para as fontes reais; não copie seu conteúdo nem registre uma implementação presumida.
 
-## Estado do projeto
+## Estado de adoção
 
-- Aplicação Next.js com App Router em `src/app/`, instalada manualmente com npm. Dependências e versões: `package.json` e `package-lock.json`.
-- Não há legado nem padrões concorrentes.
-- Origem da pipeline: Pipeline v4, derivada da [Pipeline v3](https://github.com/EduNunesGithub/ai-first-pipeline), commit `f80d84485f42fb647ed4c8172daaa7e3031eccbc`, cujos arquivos genéricos vieram de `modelo/`.
-- Git: branch principal `master`.
+- Estado inicial: template, sem aplicação instalada. As bibliotecas principais e a orientação de instalação estão em `stack.md`.
+- Origem: Pipeline v4, derivada da pipeline usada no projeto de referência. Só as instruções e a stack foram exportadas.
+- Ainda não confirmados: implementação, dependências instaladas, gerenciador de pacotes, branch principal, ferramentas e modelos disponíveis, dados de teste, acessos, integrações, CI e limites do ambiente.
+
+O orquestrador atualiza este registro com os fatos conferidos no destino. Um pedido de criar a aplicação autoriza essa atualização e as configurações necessárias; mudanças de direção seguem `orquestracao.md`. Só registre como existente, instalado, disponível, confiável ou testado o que tiver sido conferido.
 
 ## Convenções
 
-- Documentação e descrição dos commits: português do Brasil, em Conventional Commits (`feat: ...`, `fix: ...`).
+- Documentação e descrição dos commits: português do Brasil, em Conventional Commits.
 - Identificadores no código: inglês.
 - Nomes de arquivos e pastas do produto: kebab-case, respeitando os nomes exigidos pelas ferramentas.
 - Textos da interface: português do Brasil.
 
-## Fontes de referência
+## Fontes do projeto
 
-- Stack e ferramentas: documentação oficial vinculada no `README.md`.
-- Dependências, requisitos de execução e comandos: `package.json`; resolução reproduzível: `package-lock.json`.
-- Tipos e aliases da aplicação: `tsconfig.json`; aliases nativos do Node.js: `imports` em `package.json`; lint e ordenação: `eslint.config.mjs` e `eslint/`; configuração do Next.js: `next.config.mts`; formato: `.prettierrc.json` e `.prettierignore`.
-- Tailwind CSS: `postcss.config.mjs` e `src/app/globals.css`; usar o tema padrão do Tailwind enquanto não houver tema próprio.
-- Testes: configuração unitária em `vitest.config.mts`; configuração e2e em `playwright.config.ts`; comandos, instalação do navegador e fontes oficiais em `README.md`.
-- Tipografia global e preparação dos portais Base UI: `src/app/globals.css` e `src/app/layout.tsx`; composição e animação: documentação oficial vinculada no `README.md`.
-- Hooks Git: `.husky/pre-commit` e `.husky/commit-msg`, instalados pelo script `prepare`; convenção das mensagens: `commitlint.config.mjs`.
+`stack.md` orienta as bibliotecas; `normas.md` define os limites. A IA escolhe a estrutura e a integração conforme o pedido, o projeto existente e a documentação oficial pertinente às versões adotadas.
+
+Após a implementação, registre os caminhos reais e a responsabilidade das fontes que existirem:
+
+- dependências, requisitos de execução, comandos e instalação reproduzível;
+- configuração do framework, tipos, aliases, lint e formato;
+- estilos, tema e tipografia global;
+- composição global da aplicação e integrações de interface;
+- dados, validação, persistência e contratos;
+- testes, seus ambientes e dados de apoio;
+- hooks Git e integração contínua.
+
+Atualmente, não há fontes de aplicação registradas. Atualize as referências quando a implementação mudar; nomes de arquivos, formatos e modos de configuração não são contratos do template.
 
 ## Checagens
 
-**Completa**: as checagens do orquestrador. **Ficha**: o comando com escopo que entra em `Feito quando`; `—` quando não há.
+Registre os comandos que estiverem configurados e tiverem sido conferidos no destino, seus pré-requisitos e o escopo que aceitam. Distinga checagens completas, executadas pelo orquestrador, das checagens com escopo que podem entrar em `Feito quando` de uma ficha.
 
-| Checagem | Completa | Ficha |
-| --- | --- | --- |
-| Build | `npm run build`. | — |
-| Commit | `npm run commitlint -- --from HEAD~1 --to HEAD --verbose`; o hook `commit-msg` verifica a mensagem de cada novo commit. | — |
-| Diff e whitespace | `git status --short --untracked-files=all` e `git diff --check`; incluir os arquivos novos na leitura. Antes de serem rastreados, verificar whitespace com `git diff --no-index --check -- NUL <arquivo>` no Windows. | — |
-| Formato | `npm run format:check`. | `npx prettier --check <arquivos>` |
-| Lint | `npm run lint`. | `npx eslint <arquivos>` |
-| Testes unitários | `npm test`. Vitest com Testing Library em jsdom. | `npx vitest run <pasta>` |
-| Testes e2e | Quando houver suíte e2e, `npm run test:e2e`; o comando inclui o build e gerencia o servidor de produção. Atualmente não há suíte e2e. | — |
-| Tipos | `npm run typecheck`, incluindo a geração dos tipos Next.js antes de `tsc`. | — |
+- No template, confira os documentos, a sintaxe das configurações existentes, o formato e as referências da pipeline.
+- Na entrega de uma aplicação, build, formato, lint e tipos precisam estar configurados e passar, com as etapas exigidas pelas versões e ferramentas adotadas.
+- Unitários validam comportamento isolado; testes de navegador validam fluxos reais e riscos da interface. Configure e execute os que o comportamento e a tarefa exigirem.
+- Quando houver Git, confira o estado e os diffs, inclusive arquivos novos e whitespace. Sem Git, compare os arquivos com uma cópia da base.
+- Se houver commits da tarefa, confira suas mensagens pela convenção adotada.
 
-Na conferência de arquivo novo com `--no-index --check`, o status 1 pode indicar apenas que o arquivo difere de `NUL`; erros de whitespace são listados na saída e precisam ser corrigidos.
+Execute cada checagem quando seus pré-requisitos existirem; registre o que ainda não se aplica e por quê. Não crie testes só pela disponibilidade da ferramenta. Rode as suítes aplicáveis ao que mudou; ausência de testes, filtros vazios e opções que mascaram falhas não comprovam aceite.
 
-Marcadores de supressão: `eslint-disable`, `eslint-enable`, `eslint-env`, `prettier-ignore`, `@ts-ignore`, `@ts-expect-error`, `@ts-nocheck`, `ignoreBuildErrors`. Diretivas geradas em `next-env.d.ts` são referências de tipos, não supressões.
+Registre os marcadores de supressão reconhecidos pelas ferramentas instaladas, para conferir os diffs conforme `orquestracao.md`. Diferencie supressões de diretivas exigidas ou geradas pelas ferramentas.
 
 ## Paralelismo
 
-- Limite por onda: 10 fichas.
-- Arquivos compartilhados: `src/app/globals.css`, `src/app/layout.tsx` e qualquer arquivo que agregue vários módulos (índices de reexportação, registros, rotas).
-- Recursos exclusivos: as checagens da coluna Completa, `npm run dev` e `npm start` (porta 3000) e a pasta `.next/`.
+- Limite por onda: até 10 fichas, reduzido à capacidade disponível na ferramenta ou conta. Falta de vagas divide a onda; não muda o nível das fichas.
+- Identifique os arquivos compartilhados reais antes de dividir a tarefa: manifestos, locks, configuração, composição global e arquivos que agreguem vários módulos.
+- Identifique também os recursos exclusivos: instalação de dependências, ativação de hooks, checagens completas, servidores na mesma porta e diretórios de saída compartilhados.
+
+Registre os caminhos e recursos efetivamente usados quando forem conhecidos; os efeitos indiretos de comandos e geradores entram nesse levantamento.
 
 ## Rodar e observar o produto
 
-- Instalar de forma reproduzível: `npm ci`. O script `prepare` ativa o Husky no repositório Git.
-- Desenvolvimento: `npm run dev`; endereço padrão `http://localhost:3000`.
-- Produção local: `npm run build` e `npm start`; mesmo endereço padrão.
-- Observar: abrir a página inicial no navegador; conferir a resposta HTTP e a página de rota inexistente.
-- Dados e acessos de teste: inexistentes; a página inicial não exige credenciais.
-- Limites conhecidos: o terminal em sandbox falhou ao inicializar nesta instalação; o terminal com aprovação automática funcionou. O navegador para controle interativo não estava conectado; Chromium do Playwright está disponível para verificações que precisarem de navegador. Alertas das dependências: `README.md`.
+Após a inicialização, registre os procedimentos conferidos de instalação reproduzível, desenvolvimento e produção local, com seus pré-requisitos. Registre o endereço efetivo do servidor e os acessos ou dados de teste necessários quando estiverem disponíveis.
+
+Observe as rotas e os fluxos afetados pelo pedido, confira suas respostas e exercite o comportamento esperado. Não presuma comandos, portas, rotas, credenciais ou serviços.
+
+Indisponibilidade de ferramenta, serviço ou credencial segue `orquestracao.md`.
 
 ## Arquivos protegidos
 
 Só mudam quando a tarefa exige, e toda mudança é declarada na entrega.
 
-- `AGENTS.md`, `CLAUDE.md`, `.claude/`, `.codex/`.
-- `pipeline/`, exceto `pipeline/padroes.md`.
-- Configuração das checagens e dos arquivos verificados: `.gitattributes`, `.gitignore`, `.prettierignore`, `.prettierrc.json`, `commitlint.config.mjs`, `eslint.config.mjs`, `eslint/`, `next.config.mts`, `postcss.config.mjs`, `tsconfig.json`, `vitest.config.mts`, `playwright.config.ts`.
-- Comandos, dependências e hooks: `.husky/commit-msg`, `.husky/pre-commit`, `package-lock.json`, `package.json`.
-- Integração contínua: ainda inexistente; registrar quando criada.
+- Instruções e ferramentas de agente: `AGENTS.md`, `CLAUDE.md`, `.claude/` e `.codex/`.
+- Instruções da pipeline: `pipeline/`, exceto `pipeline/padroes.md`.
+- No destino: configurações que definem checagens, arquivos verificados, framework, tipos, dependências, comandos, hooks e integração contínua.
 
-Os caminhos existentes estão nas regras `ask` de `.claude/settings.json`.
+Ao criar ou adotar uma configuração protegida, registre seu caminho real aqui e inclua a regra correspondente em `.claude/settings.json` na mesma entrega, antes de delegar alterações posteriores. O template protege seus próprios arquivos; as proteções da aplicação acompanham a implementação efetivamente adotada.
 
 ## Ferramentas de agente
 
-- `.claude/agents/` e `.codex/agents/`: níveis `t0` a `t3` e `revisor`; modelo e esforço em cada definição. O Codex não oferece Haiku nem Opus e usa equivalentes OpenAI.
-- `.claude/settings.json` e `.codex/config.toml`: memória automática desativada, confirmação para comandos git que escrevem e limite de agentes simultâneos do Codex.
-- A confiança deste projeto foi conferida na configuração local do Codex: `trust_level = "trusted"`. As configurações locais de projeto só são carregadas em projetos confiáveis, conforme a [documentação oficial](https://learn.chatgpt.com/docs/config-file/config-reference).
-- Codex CLI e Claude Code estão instalados. A disponibilidade dos modelos na conta do humano não foi testada com chamadas aos provedores; qualquer indisponibilidade real deve ser declarada, sem substituição silenciosa.
-- `next dev`, `next build` e `next typegen` mantêm `next-env.d.ts` e tipos em `.next/`; esses artefatos não são editados manualmente nem versionados.
-- `agentRules: false` em `next.config.mts` impede a escrita automática do Next.js nos arquivos de instruções dos agentes.
+- `.claude/agents/` e `.codex/agents/`: níveis `t0` a `t3` e `revisor`; modelo e esforço em cada definição. Preserve o agente escolhido pela ficha; indisponibilidade real é declarada, sem substituição silenciosa.
+- `.claude/settings.json`: memória automática desativada e regras de confirmação para alterações protegidas e comandos Git indicados.
+- `.codex/config.toml`: memória automática desativada e limite configurado de subagentes. Permissões efetivas vêm da sessão; não equivalem às regras de confirmação do Claude Code.
+
+No destino, confira a disponibilidade das ferramentas e a confiança necessária para carregar suas configurações locais conforme a documentação oficial atual. Não altere configurações pessoais para simular essa confirmação.
