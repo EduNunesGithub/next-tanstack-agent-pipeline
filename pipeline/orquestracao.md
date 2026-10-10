@@ -51,7 +51,7 @@ Configurações independentes podem rodar em paralelo depois da fundação, se c
 
 O relato do implementador não é prova. Em cada onda:
 
-1. Antes de disparar, guarde a linha de base: `git status --short --untracked-files=all` e os diffs ou uma cópia dos arquivos que já tenham mudanças. Sem Git, guarde uma cópia dos arquivos da tarefa. A base precisa permitir distinguir o trabalho novo de alterações anteriores, inclusive no mesmo arquivo.
+1. Antes de disparar, guarde a linha de base: `git status --short --untracked-files=all` e os diffs ou uma cópia dos arquivos que já tenham mudanças. Sem Git, guarde uma cópia dos arquivos da tarefa. A base precisa permitir distinguir o trabalho novo de alterações anteriores, inclusive no mesmo arquivo. Preserve a base anterior à primeira onda para a revisão final de toda a tarefa.
 2. Em cada retorno, confira se os arquivos estão na ficha e se o diff cumpre `Feito quando` e o contrato. Depois, rode de novo os comandos com escopo sobre a união dos arquivos da onda.
 3. Compare arquivos e diffs com a base: nada fora das fichas e dos artefatos permitidos, nenhuma supressão nova (marcadores de `projeto.md`); arquivo protegido só fica se a tarefa exige, e é declarado.
 4. Trate o que veio em `Registro` (seção 6).
@@ -62,10 +62,11 @@ Depois da última onda:
 - **Checagens completas**, sobre o estado final integrado, conforme `projeto.md`. Se uma checagem acabou de passar nesse mesmo estado e nada mudou, o resultado ainda vale.
 - **Produto**, na medida do risco, como `projeto.md` descreve: mudança visível → olhe a tela; comportamento novo → exercite o fluxo e os casos criados; sinal de risco → exercite também o caminho de falha (acesso negado, dado inválido, exclusão).
 - **Revisor**, se houver sinal de risco: algo de que outras partes vão depender (tela, rota, módulo, componente compartilhado, primeira instância de padrão); dados persistidos, contrato ou URL pública, autenticação, autorização, segurança, pagamento ou exclusão; dependências ou configuração das checagens; mudança extensa ou espalhada por camadas; ou que deu trabalho (várias tentativas, subida de nível).
+  - Por padrão, chame um único revisor para o conjunto da implementação, após integrar todas as ondas e concluir as checagens. Não dispare um revisor para cada ficha ou retorno de implementador. Revisão antecipada é exceção por necessidade concreta, como validar contrato ou exemplar antes de fichas dependentes, ou por exigência do pedido; declare o motivo.
   - É sempre uma instância nova: nunca fork desta conversa nem continuação de outro revisor.
-  - Recebe só o objetivo, os critérios, à parte as decisões que você tomou onde o pedido não dizia nada, e quais arquivos são da tarefa, se houver outras mudanças. Não recebe fichas, raciocínio nem resumo da implementação.
+  - Recebe só o objetivo, os critérios, à parte as decisões que você tomou onde o pedido não dizia nada, uma referência acessível à base pertinente à revisão ou ao diff exclusivo da mudança, incluindo arquivos novos e exclusões, e quais arquivos são da tarefa, se houver outras mudanças. Não recebe fichas, raciocínio nem resumo da implementação.
   - Confirme cada achado (reproduza ou siga o código). O real vira falha (seção 5). O sem base (hipotético, preferência, fora do diff, lacuna de checagem) é descartado sem repassar. Achado nunca vira escopo.
-  - Depois da correção, rode as checagens de novo. Se a correção foi substancial, chame um segundo e último revisor novo, que confere só os achados anteriores e as correções.
+  - Guarde o estado revisado antes das correções. Depois da correção, rode as checagens de novo. Se a correção foi substancial, chame um segundo e último revisor novo, que confere só os achados anteriores e as correções.
   - Revisão sem veredito: chame um revisor novo uma vez; se de novo não terminar, diga na entrega.
 
 ## 5. Falhas e escalonamento

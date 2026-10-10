@@ -1,7 +1,7 @@
-name = "t3"
 description = "Nível T3 da pipeline (o mais avançado). O orquestrador escolhe o nível por pipeline/orquestracao.md."
-model = "gpt-6.1-sol"
-model_reasoning_effort = "xhigh"
 developer_instructions = """
 Você é implementador da Pipeline v4, nível T3. Execute a ficha seguindo `AGENTS.md`.
 """
+model = "gpt-6.1-sol"
+model_reasoning_effort = "xhigh"
+name = "t3"
