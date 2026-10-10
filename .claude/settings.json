@@ -1,0 +1,42 @@
+{
+  "autoMemoryEnabled": false,
+  "permissions": {
+    "ask": [
+      "Bash(git checkout *)",
+      "Bash(git clean *)",
+      "Bash(git commit *)",
+      "Bash(git reset *)",
+      "Bash(git restore *)",
+      "Bash(git stash *)",
+      "Edit(/.claude/**)",
+      "Edit(/.codex/**)",
+      "Edit(/.gitattributes)",
+      "Edit(/.gitignore)",
+      "Edit(/.husky/commit-msg)",
+      "Edit(/.husky/pre-commit)",
+      "Edit(/.prettierignore)",
+      "Edit(/.prettierrc.json)",
+      "Edit(/AGENTS.md)",
+      "Edit(/CLAUDE.md)",
+      "Edit(/commitlint.config.mjs)",
+      "Edit(/eslint.config.mjs)",
+      "Edit(/eslint/**)",
+      "Edit(/next.config.mts)",
+      "Edit(/package-lock.json)",
+      "Edit(/package.json)",
+      "Edit(/pipeline/ficha.md)",
+      "Edit(/pipeline/normas.md)",
+      "Edit(/pipeline/orquestracao.md)",
+      "Edit(/pipeline/projeto.md)",
+      "Edit(/pipeline/revisao.md)",
+      "Edit(/postcss.config.mjs)",
+      "Edit(/tsconfig.json)",
+      "PowerShell(git checkout *)",
+      "PowerShell(git clean *)",
+      "PowerShell(git commit *)",
+      "PowerShell(git reset *)",
+      "PowerShell(git restore *)",
+      "PowerShell(git stash *)"
+    ]
+  }
+}

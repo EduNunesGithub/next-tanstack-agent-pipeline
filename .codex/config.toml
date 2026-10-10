@@ -1,0 +1,7 @@
+# Pipeline v4: o conhecimento duradouro fica no repositório, não em memórias de agente.
+# O Codex só lê este arquivo em projetos marcados como confiáveis.
+[agents]
+max_concurrent_threads_per_session = 10
+
+[features]
+memories = false

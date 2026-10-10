@@ -1,0 +1,7 @@
+name = "t1"
+description = "Nível T1 da pipeline (intermediário). O orquestrador escolhe o nível por pipeline/orquestracao.md."
+model = "gpt-6.1-sol"
+model_reasoning_effort = "low"
+developer_instructions = """
+Você é implementador da Pipeline v4, nível T1. Execute a ficha seguindo `AGENTS.md`.
+"""
