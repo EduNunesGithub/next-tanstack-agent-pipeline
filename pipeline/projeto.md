@@ -68,6 +68,7 @@ Indisponibilidade de ferramenta, serviço ou credencial segue `orquestracao.md`.
 
 - Instruções e ferramentas de agente: `AGENTS.md`, `CLAUDE.md`, `.claude/` e `.codex/`.
 - Instruções da pipeline: `pipeline/`, exceto `pipeline/padroes.md`.
+- Repositório: `.gitattributes`, que fixa o fim de linha em LF em qualquer sistema (o Git do Windows converte para CRLF por padrão, e o Prettier exige LF).
 - No destino: configurações que definem checagens, arquivos verificados, framework, tipos, dependências, comandos, hooks e integração contínua.
 
 Ao criar ou adotar uma configuração protegida, registre seu caminho real aqui e inclua a regra correspondente em `.claude/settings.json` na mesma entrega, antes de delegar alterações posteriores. O template protege seus próprios arquivos; as proteções da aplicação acompanham a implementação efetivamente adotada.

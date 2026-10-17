@@ -10,6 +10,7 @@
       "Bash(git stash *)",
       "Edit(/.claude/**)",
       "Edit(/.codex/**)",
+      "Edit(/.gitattributes)",
       "Edit(/AGENTS.md)",
       "Edit(/CLAUDE.md)",
       "Edit(/pipeline/ficha.md)",
