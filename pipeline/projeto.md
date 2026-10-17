@@ -66,8 +66,6 @@ Indisponibilidade de ferramenta, serviço ou credencial segue `orquestracao.md`.
 
 ## Arquivos protegidos
 
-Só mudam quando a tarefa exige, e toda mudança é declarada na entrega.
-
 - Instruções e ferramentas de agente: `AGENTS.md`, `CLAUDE.md`, `.claude/` e `.codex/`.
 - Instruções da pipeline: `pipeline/`, exceto `pipeline/padroes.md`.
 - No destino: configurações que definem checagens, arquivos verificados, framework, tipos, dependências, comandos, hooks e integração contínua.
