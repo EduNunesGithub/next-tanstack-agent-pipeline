@@ -100,6 +100,7 @@ Por quê: manter o ritmo consistente entre transições, animações e demais te
 Por quê: permitir ajustes globais e manter o texto previsível.
 O caminho da fonte efetivamente adotada fica em `projeto.md`; a configuração segue a versão instalada.
 Não usar tamanhos avulsos, alturas de linha manuais ou sobrescritas locais de tamanho e altura.
+O espaçamento entre letras usa os tokens oficiais `tracking-*` do Tailwind; não usar `letter-spacing` avulso.
 
 ### UI-7: O espaçamento entre elementos usa `gap` no contêiner.
 
@@ -113,3 +114,7 @@ Por quê: preservar o autocomplete do Tailwind CSS e manter a aparência visíve
 ### UI-9: Ícones da interface usam `lucide-react`.
 
 Por quê: manter uma linguagem visual consistente e evitar recriar os símbolos fornecidos pela biblioteca.
+
+### UI-10: Classes compostas de mais de uma parte (condicionais, props ou variáveis) são combinadas com `twMerge`; não concatenar classes com template literal, `+` ou `join`.
+
+Por quê: resolver conflitos entre utilidades de forma previsível e manter uma única forma de compor classes.
