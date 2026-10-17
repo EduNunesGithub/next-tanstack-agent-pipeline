@@ -1,4 +1,4 @@
-description = "Nível T1 da pipeline (intermediário). O orquestrador escolhe o nível por pipeline/orquestracao.md."
+description = "Nível T1 da pipeline (simples). O orquestrador escolhe o nível por pipeline/orquestracao.md."
 developer_instructions = """
 Você é implementador da Pipeline v4, nível T1. Execute a ficha seguindo `AGENTS.md`.
 """

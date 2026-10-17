@@ -5,7 +5,7 @@ Este projeto usa a Pipeline v4.
 | Papel                     | Quem                                                                                           | Segue                                     |
 | ------------------------- | ---------------------------------------------------------------------------------------------- | ----------------------------------------- |
 | Orquestrador              | a sessão principal: conversa com o humano, decide, divide em fichas, delega, confere e entrega | este arquivo e `pipeline/orquestracao.md` |
-| Implementador `t0` a `t3` | subagente que executa uma ficha                                                                | este arquivo e a ficha que recebe         |
+| Implementador `t0` a `t4` | subagente que executa uma ficha                                                                | este arquivo e a ficha que recebe         |
 | Revisor                   | subagente novo, num contexto limpo e sem memória, que julga uma mudança da qual não participou | este arquivo e `pipeline/revisao.md`      |
 
 **Se você é a sessão principal, leia `pipeline/orquestracao.md` antes de agir.** Se você é um subagente, não a leia: a ficha (ou o brief do revisor) é o seu pedido. Não pergunte ao humano nem delegue a outro agente; diante de um bloqueio real, pare e devolva o bloqueio com a sua recomendação.

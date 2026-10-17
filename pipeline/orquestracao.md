@@ -8,7 +8,7 @@ Pergunta, conversa ou pedido de explicação não é tarefa: responda e pronto.
 
 ## 1. Entenda
 
-Leia o pedido como objetivo: o que o humano quer conseguir e o que isso implica. Tudo o que ele exige (código, testes, norma, padrão) vai na mesma entrega. Confira o estado de adoção em `projeto.md`; se ainda for template e o pedido criar a aplicação, planeje a inicialização descrita em `stack.md`. Explore antes de concluir que falta informação; numa área grande, dê a um `t1` uma ficha de exploração, sem arquivos de escrita, que pede um resumo e não o código.
+Leia o pedido como objetivo: o que o humano quer conseguir e o que isso implica. Tudo o que ele exige (código, testes, norma, padrão) vai na mesma entrega. Confira o estado de adoção em `projeto.md`; se ainda for template e o pedido criar a aplicação, planeje a inicialização descrita em `stack.md`. Explore antes de concluir que falta informação; numa área grande, dê a um `t2` uma ficha de exploração, sem arquivos de escrita, que pede um resumo e não o código.
 
 ## 2. Decida antes de começar
 
@@ -26,16 +26,19 @@ Ficha (`ficha.md`) = um resultado verificável com lista fechada de arquivos de 
 
 Classifique **cada ficha depois da divisão**, pelo raciocínio que ainda cabe ao implementador, e escolha o menor nível suficiente. Tamanho do pedido, quantidade de arquivos, projeto vazio e nome da tecnologia não determinam nível. Fechar a ficha é definir resultado, contrato e referência; não escrever a implementação inteira no brief para chamá-la de `t0`.
 
-Se a dúvida vem de informação ausente, explore ou complete a ficha. Se restarem decisões complexas, use o nível que as resolve. A classificação de execução não elimina revisão ou checagens exigidas pelo risco.
+Se a dúvida vem de informação ausente, explore ou complete a ficha. Se restarem decisões complexas, use o nível que as resolve.
 
 | Nível | Quando                                                                                                                                                                                                                                                                                                         |
 | ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `t0`  | Resultado e contrato definidos, sem escolhas abertas; referência inequívoca em exemplar, configuração base ou documentação oficial; aceite por comando ou diff. Inclui arquivo novo, configuração rotineira da stack, réplica, texto, estilo com valor do tema, renomeação e correção diagnosticada.           |
-| `t1`  | Solução convencional com lógica local: estado, condição, validação, adaptação documentada, casos de teste a derivar ou exploração delimitada. Pode ser a primeira ocorrência no projeto, se não exigir decidir arquitetura ou contrato.                                                                        |
-| `t2`  | A ficha ainda exige decisões estruturais, compatibilizar contratos ou camadas sem solução definida, projetar persistência ou integração, ou investigar defeito com relações que a exploração local não esclareceu. Primeira instância de um padrão quando sua forma ainda precisa ser projetada.               |
-| `t3`  | Raciocínio difícil sobre segurança, autenticação, concorrência, migração ou desempenho: ameaças, garantias, integridade ou diagnóstico profundo. Configurar uma solução documentada nessas áreas não basta para subir a `t3`; a dificuldade pendente ou o escalonamento da seção 5 precisa justificar o nível. |
+| `t1`  | Lógica local cuja forma um exemplar do projeto já mostra: adaptar a referência ou replicar o exemplar com estado, eventos ou composição, derivar casos de teste no formato dos testes existentes ou integrar partes prontas. `Livre` só com escolhas locais, como casos extras e organização dos testes.       |
+| `t2`  | Solução convencional com lógica local que nenhum exemplar do projeto mostra ainda: estado, condição, validação, adaptação documentada, casos de teste a derivar ou exploração delimitada. Pode ser a primeira ocorrência no projeto, se não exigir decidir arquitetura ou contrato.                            |
+| `t3`  | A ficha ainda exige decisões estruturais, compatibilizar contratos ou camadas sem solução definida, projetar persistência ou integração, ou investigar defeito com relações que a exploração local não esclareceu. Primeira instância de um padrão cuja forma ainda está em aberto.                            |
+| `t4`  | Raciocínio difícil sobre segurança, autenticação, concorrência, migração ou desempenho: ameaças, garantias, integridade ou diagnóstico profundo. Configurar uma solução documentada nessas áreas não basta para subir a `t4`; a dificuldade pendente ou o escalonamento da seção 5 precisa justificar o nível. |
 
-**Exemplo de projeto vazio:** criar uma aplicação Next.js não vira uma ficha `t3` por ser "do zero". Com a stack definida, dependências e configurações de resultado determinado podem ser `t0`; uma página com lógica local, `t1`. Uma integração com contrato ainda por projetar pode ser `t2`; autenticação com regras de acesso complexas, `t3`. Cada ficha leva a justificativa do nível em uma frase; o conjunto só sobe se as responsabilidades não puderem ser separadas com segurança.
+Impacto não é dificuldade: ser exemplar, compartilhado ou arriscado pede revisão, não nível maior, e nível baixo não dispensa a revisão nem as checagens que o risco exige. Primeira instância com forma e contrato já decididos é `t2`; `t3` só quando a própria forma ainda está em aberto.
+
+**Exemplo de projeto vazio:** criar uma aplicação Next.js não vira uma ficha `t4` por ser "do zero". Com a stack definida, dependências e configurações de resultado determinado podem ser `t0`; uma página com lógica local, `t2`, e as seguintes que repetem a forma dela, `t1`. Uma integração com contrato ainda por projetar pode ser `t3`; autenticação com regras de acesso complexas, `t4`.
 
 Fichas da mesma onda rodam em paralelo (todas na mesma mensagem, um agente por ficha) e só se:
 
@@ -45,7 +48,7 @@ Fichas da mesma onda rodam em paralelo (todas na mesma mensagem, um agente por f
 - mudanças protegidas estão autorizadas pelo pedido e os comandos de uma ficha não alteram o estado usado pela outra;
 - nenhuma usa recurso exclusivo de `projeto.md`.
 
-Configurações independentes podem rodar em paralelo depois da fundação, se cumprirem esses critérios; serem configurações ou primeiras ocorrências não cria dependência por si só. Instalação e lock, geração com efeitos compartilhados e configuração de um mesmo recurso ficam em uma ficha serial. Não paralelize defeito de causa desconhecida nem `t3`. Respeite o limite efetivo de `projeto.md`. Ordem típica: fundação ou exemplar necessário → partes independentes em paralelo → integração dos arquivos compartilhados.
+Configurações independentes podem rodar em paralelo depois da fundação, se cumprirem esses critérios; serem configurações ou primeiras ocorrências não cria dependência por si só. Instalação e lock, geração com efeitos compartilhados e configuração de um mesmo recurso ficam em uma ficha serial. Não paralelize defeito de causa desconhecida nem `t4`. Respeite o limite efetivo de `projeto.md`. Ordem típica: fundação ou exemplar necessário → partes independentes em paralelo → integração dos arquivos compartilhados.
 
 ## 4. Confira e integre
 
@@ -80,15 +83,15 @@ Uma ficha falhou se:
 - quebrou a integração;
 - recebeu achado confirmado do revisor.
 
-O nível da nova tentativa vem da causa, não do simples fato de ter havido falha. Uma correção já diagnosticada pode ser `t0` mesmo quando a implementação anterior era `t2` ou `t3`. Falta de referência, contrato ou critério é problema da ficha; não se resolve comprando mais raciocínio.
+O nível da nova tentativa vem da causa, não do simples fato de ter havido falha. Uma correção já diagnosticada pode ser `t0` mesmo quando a implementação anterior era `t3` ou `t4`. Falta de referência, contrato ou critério é problema da ficha; não se resolve comprando mais raciocínio.
 
-| Situação                                                                                                   | Ação                                                                                                                                                            |
-| ---------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Defeito diagnosticado (o quê e onde)                                                                       | Mesmo implementador, se disponível; senão, ficha `t0` de correção.                                                                                              |
-| Capacidade insuficiente, falha sem diagnóstico após a conferência, ou segunda falha técnica no mesmo nível | Suba um nível (`t0` → `t1` → `t2` → `t3`), instância nova, ficha com `Falha anterior`; em `t3`, mude a abordagem (outra estratégia ou outra divisão em fichas). |
-| Ficha ambígua ou incompleta                                                                                | Não é falha: corrija a ficha e reenvie no mesmo nível. Ambiguidade do pedido volta à seção 2.                                                                   |
-| Ambiente (ferramenta, serviço, credencial)                                                                 | Bloqueio; nada de contornar enfraquecendo.                                                                                                                      |
-| Terceira falha da mesma ficha                                                                              | Pare: entrega parcial com o que funciona, o que falta, por quê e uma recomendação.                                                                              |
+| Situação                                                                                                   | Ação                                                                                                                                                                   |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Defeito diagnosticado (o quê e onde)                                                                       | Mesmo implementador, se disponível; senão, ficha `t0` de correção.                                                                                                     |
+| Capacidade insuficiente, falha sem diagnóstico após a conferência, ou segunda falha técnica no mesmo nível | Suba um nível (`t0` → `t1` → `t2` → `t3` → `t4`), instância nova, ficha com `Falha anterior`; em `t4`, mude a abordagem (outra estratégia ou outra divisão em fichas). |
+| Ficha ambígua ou incompleta                                                                                | Não é falha: corrija a ficha e reenvie no mesmo nível. Ambiguidade do pedido volta à seção 2.                                                                          |
+| Ambiente (ferramenta, serviço, credencial)                                                                 | Bloqueio; nada de contornar enfraquecendo.                                                                                                                             |
+| Terceira falha da mesma ficha                                                                              | Pare: entrega parcial com o que funciona, o que falta, por quê e uma recomendação.                                                                                     |
 
 ## 6. Registro
 
