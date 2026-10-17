@@ -74,7 +74,8 @@ Ao criar ou adotar uma configuração protegida, registre seu caminho real aqui 
 
 ## Ferramentas de agente
 
-- `.claude/agents/` e `.codex/agents/`: níveis `t0` a `t3` e `revisor`; modelo e esforço em cada definição. Preserve o agente escolhido pela ficha; indisponibilidade real é declarada, sem substituição silenciosa.
+- `.claude/agents/` e `.codex/agents/`: níveis `t0` a `t3` e `revisor`; modelo e esforço em cada definição. Preserve o agente escolhido pela ficha; indisponibilidade real é declarada, sem substituição silenciosa. As definições, inclusive as edições, só valem numa sessão aberta depois da mudança.
+- Ferramentas dos subagentes no Claude Code: lista fechada em `tools` de cada definição, só com o que o trabalho deles usa, porque cada ferramenta disponível pesa no contexto de todos os turnos. Se uma ficha precisar de outra (inclusive de MCP, como `mcp__<servidor>`), o orquestrador faz essa etapa ou a acrescenta à definição do nível, como mudança protegida.
 - `.claude/settings.json`: memória automática desativada e regras de confirmação para alterações protegidas e comandos Git indicados.
 - `.codex/config.toml`: memória automática desativada e limite configurado de subagentes. Permissões efetivas vêm da sessão; não equivalem às regras de confirmação do Claude Code.
 
