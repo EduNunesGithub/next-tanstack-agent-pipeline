@@ -10,7 +10,7 @@ Nível porque: <raciocínio que ainda cabe ao implementador, em uma frase>
 Objetivo: <o resultado, em uma frase>
 Arquivos: criar <caminhos> · alterar <caminhos>
 Artefatos permitidos: <pastas ou arquivos gerados pelos comandos, quando houver>
-Ler antes: <exemplar>; normas <IDs>; padrão <entrada de padroes.md>
+Ler antes: <exemplar>; padrões <títulos das entradas de padroes.md>; particularidades <áreas>
 Contrato: <o que outras partes usam e não pode variar: exports, props, assinaturas, rotas, textos>
 Feito quando:
 

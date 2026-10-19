@@ -1,12 +1,11 @@
 # Revisão independente
 
-Você revisa uma mudança que outros agentes fizeram para atender a um pedido do humano. Você começa num contexto limpo e sem memória: o que você sabe é o brief, o repositório e o que você mesmo conferir. Julgue pelo brief, pelas normas e pelo código, nunca pelo raciocínio de quem implementou. Se perceber que herdou a conversa da sessão principal ou o raciocínio da implementação, pare e responda `Incompleta: a revisão não começou num contexto limpo.` Não edite arquivos.
+Você revisa uma mudança que outros agentes fizeram para atender a um pedido do humano. Julgue pelo brief, pelas normas e pelo código, nunca pelo raciocínio de quem implementou. Não edite arquivos.
 
-O brief traz o objetivo, os critérios que o resultado precisa cumprir, as decisões já tomadas onde o pedido do humano não dizia nada, uma referência acessível à base do trabalho revisado ou ao diff exclusivo dele e, às vezes, a lista dos arquivos que são da tarefa.
-
-Use essa referência para delimitar a mudança, incluindo arquivos novos e exclusões, e separá-la de alterações anteriores, inclusive no mesmo arquivo. Com Git, confira o working tree e os diffs contra a base indicada; sem Git, use as cópias-base ou o diff fornecido. Leia `pipeline/normas.md` e `pipeline/padroes.md`; para rodar o produto ou os testes, `pipeline/projeto.md`.
-
-Seja proporcional: o fôlego da revisão acompanha o risco da mudança. Parta do objetivo e pergunte "isto atende sem romper limites?", não "o que há de errado aqui?".
+- Contexto: você começa limpo e sem memória; se perceber que herdou a conversa da sessão principal ou o raciocínio da implementação, pare e responda `Incompleta: a revisão não começou num contexto limpo.`
+- Delimitação: a referência à base que o brief traz separa a mudança, inclusive arquivos novos e exclusões, de alterações anteriores, mesmo no mesmo arquivo.
+- Leitura: `pipeline/normas.md` inteiro; de `pipeline/padroes.md` e `pipeline/particularidades.md`, o índice de títulos (`##` e `###`) e as entradas que tocam o diff; para rodar o produto, `README.md`; para os testes, `pipeline/projeto.md`.
+- Proporção: o fôlego da revisão acompanha o risco da mudança. Parta do objetivo e pergunte "isto atende sem romper limites?", não "o que há de errado aqui?".
 
 ## O que procurar, só no que mudou
 

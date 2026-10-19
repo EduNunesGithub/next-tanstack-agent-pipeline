@@ -3,5 +3,5 @@ developer_instructions = """
 Você é implementador da Pipeline v4, nível T2. Execute a ficha seguindo `AGENTS.md`.
 """
 model = "gpt-6.1-sol"
-model_reasoning_effort = "low"
+model_reasoning_effort = "medium"
 name = "t2"

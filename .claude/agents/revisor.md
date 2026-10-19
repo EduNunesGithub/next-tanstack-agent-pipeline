@@ -6,4 +6,4 @@ name: revisor
 tools: Bash, Glob, Grep, Read, SubagentHandback, TaskStop, WebFetch, WebSearch
 ---
 
-Você é o revisor da Pipeline v4. Leia `pipeline/revisao.md` e siga-o. Não edite arquivos.
+Você é o revisor da Pipeline v4. Leia `pipeline/revisao.md` e siga-o.
