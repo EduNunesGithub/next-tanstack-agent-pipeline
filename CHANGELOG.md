@@ -16,9 +16,7 @@ A v5 mantém o núcleo da v4: normas com motivo, fichas com arquivos fechados, c
 
 ### Estrutura
 
-- `v5/` é uma árvore instalável completa: o conteúdo dela vai para a raiz do destino, sem este arquivo.
-  - Por quê: a v4 continua na raiz e não podia ser alterada; uma árvore completa evita que alguém misture arquivos das duas versões.
-  - Alternativa descartada: substituir a v4 na raiz. Seria a forma final, mas apagaria a v4 nesta entrega.
+- A v5 substitui a v4 na raiz, com a mesma árvore: `AGENTS.md`, `CLAUDE.md`, `.claude/`, `.codex/` e `pipeline/`.
 - `pipeline/` continua plana. Entram dois arquivos:
   - `evolucao.md`: quando a pipeline muda e com que autoridade;
   - `backlog.md`: achados fora do escopo, sobras não críticas da revisão, propostas pendentes e pendências adiadas.
@@ -98,8 +96,12 @@ A v5 mantém o núcleo da v4: normas com motivo, fichas com arquivos fechados, c
 - Conferência pelo diff contra a linha de base, escalonamento por causa, terceira falha leva a entrega parcial.
 - Git direto na branch principal, commit só pelo orquestrador, memória de agente desligada.
 
-### Coexistência com a v4
+### Migração de um projeto na v4
 
-- Até a v5 ser promovida à raiz, as duas versões convivem neste repositório.
-- O Claude Code carrega o `CLAUDE.md` das pastas-pai e, ao ler arquivos de uma subpasta, também o dela. Uma sessão aberta na raiz recebe a v5 junto com a v4 quando lê arquivos de `v5/`; aberta em `v5/`, recebe as duas desde o início. O Codex junta os `AGENTS.md` da raiz até a pasta de trabalho.
-- A coexistência é transitória: promover a v5 à raiz, removendo a v4, a encerra.
+- Substitua pelos da v5: `AGENTS.md`, `CLAUDE.md`, as definições em `.claude/agents/` e `.codex/agents/`, e `pipeline/orquestracao.md`, `ficha.md`, `revisao.md`, `escrita.md`, `adocao.md` e `stack.md`.
+- Acrescente `pipeline/evolucao.md` e `pipeline/backlog.md`, este só com as seções.
+- Mantenha os registros do projeto: `normas.md`, `padroes.md`, `particularidades.md` e `impactos/`.
+- Em `projeto.md`, mantenha o conteúdo do projeto e mude só:
+  - `Arquivos protegidos`: a lista explícita de `pipeline/` da v5, sem `normas.md` e com `evolucao.md`;
+  - `Paralelismo`: tire a regra de falta de vagas, que foi para `orquestracao.md`.
+- Em `.claude/settings.json`, junte às regras do projeto as mudanças da v5: sai `Edit(/pipeline/normas.md)`, entra `Edit(/pipeline/evolucao.md)`.
