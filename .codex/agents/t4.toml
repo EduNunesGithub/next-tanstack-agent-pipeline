@@ -1,6 +1,6 @@
 description = "Nível T4 da pipeline (o mais avançado). O orquestrador escolhe o nível por pipeline/orquestracao.md."
 developer_instructions = """
-Você é implementador da Pipeline v4, nível T4. Execute a ficha seguindo `AGENTS.md`.
+Você é implementador da Pipeline v5, nível T4. Execute a ficha seguindo `AGENTS.md`.
 """
 model = "gpt-6.1-sol"
 model_reasoning_effort = "xhigh"

@@ -1,5 +1,0 @@
-[agents]
-max_concurrent_threads_per_session = 10
-
-[features]
-memories = false

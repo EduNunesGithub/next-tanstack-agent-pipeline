@@ -1,7 +1,0 @@
-description = "Nível T0 da pipeline (o mais simples). O orquestrador escolhe o nível por pipeline/orquestracao.md."
-developer_instructions = """
-Você é implementador da Pipeline v5, nível T0. Execute a ficha seguindo `AGENTS.md`.
-"""
-model = "gpt-6-luna"
-model_reasoning_effort = "max"
-name = "t0"

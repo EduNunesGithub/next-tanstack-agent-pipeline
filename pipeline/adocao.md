@@ -6,7 +6,8 @@
 
 - Ferramentas: confira a disponibilidade das ferramentas e a confiança necessária para carregar suas configurações locais conforme a documentação oficial atual. Não altere configurações pessoais para simular essa confirmação.
 - `projeto.md`: o template não antecipa caminhos de configuração, comandos de execução nem código de integração da aplicação; registre só o que for conferido no destino.
-- `padroes.md`, `particularidades.md` e `impactos/`: começam vazios; exemplares, armadilhas e lições da origem não viram entradas do novo projeto.
+- `padroes.md`, `particularidades.md`, `backlog.md` e `impactos/`: começam vazios; exemplares, armadilhas, pendências e lições da origem não viram entradas do novo projeto.
+- `CHANGELOG.md`: documenta a evolução do template e não vai para o destino.
 
 ## Criar a aplicação
 

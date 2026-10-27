@@ -1,26 +1,47 @@
 # Escrita da pipeline
 
-> Para o orquestrador, ao escrever em `pipeline/` ou em `AGENTS.md`.
+> Para o orquestrador, ao escrever em `pipeline/`, em `AGENTS.md`, numa ficha ou num brief. Quando e com que autoridade a pipeline muda está em `evolucao.md`.
+
+## Princípio
+
+Clareza não é brevidade. Uma regra clara é estruturada e direta: diz o que fazer, separa o obrigatório da liberdade do agente e explica o porquê quando ele não é óbvio.
+
+- Corte só o que não orienta nenhuma decisão.
+- Não encurte uma regra à custa de deixá-la ambígua.
+- Uma obrigação por item: uma frase que carrega duas obrigações vira dois itens.
+- Exemplo:
+  - Verboso: "Quando for criar um componente novo, é importante que você lembre de verificar antes se já existe um componente parecido no projeto e, caso exista, reutilizá-lo em vez de criar outro, para evitar duplicação de código."
+  - Estruturado: "Antes de criar um componente, verifique se já existe um equivalente e reutilize-o."
+
+## Vocabulário
+
+- Obrigação: frase imperativa ("Rode", "Cite"). Sem marcador de liberdade, o item é obrigatório.
+- Proibição: "Nunca" ou "Não".
+- Liberdade: item rotulado `Livre:`, ou frase com "pode" seguida da condição ("Pode rodar em paralelo quando...").
+- Exceção: item rotulado `Exceção:`, com o caso exato.
+- Motivo: sub-item `Por quê:`, só quando o motivo não é óbvio. Ele diz quando um desvio se justifica.
 
 ## Onde mora cada informação
 
-- Registros da pipeline: conforme `AGENTS.md` (Onde está a verdade).
+- Registros da pipeline: as fontes de `AGENTS.md › Onde está a verdade`, mais `backlog.md` (o que ficou para depois) e `impactos/` (ocorrências em que a pipeline falhou).
 - Como rodar, para pessoas: `README.md`.
 - Documentação do produto escrita pelo humano: `docs/`, registrada como fonte em `projeto.md`.
 - Estrutura, comportamento e configuração: o próprio código. A pipeline não copia nem aponta o que um agente acha lendo o código; cada linha existe porque, sem ela, um agente competente decidiria pior.
-- Histórico: `git log`; nenhum arquivo guarda o que já foi feito.
+- Decisões de uma tarefa: conforme `orquestracao.md › Registro das decisões`.
+- Histórico: `git log`. Nenhum arquivo guarda o que já foi feito, exceto `impactos/`, que guarda ocorrências para que a recorrência seja reconhecida.
 
 ## Estilo
 
 - Estrutura antes de prosa: `##` por área, `###` por entrada, um fato por item.
 - Item rotulado: `- Rótulo: valor`, com os rótulos do modelo do arquivo; sub-itens quando o valor tem partes.
-- `Por quê:` só quando o motivo não é óbvio; ele diz quando um desvio se justifica.
-- Cada regra numa fonte só: frase curta e direta, sem repetir nem resumir o título, outra entrada ou outro arquivo.
+- Cada regra numa fonte só. Em outro arquivo, aponte para ela (`arquivo › título`) em vez de repeti-la ou resumi-la.
 - Caminhos, comandos e identificadores entre crases, exatamente como existem e conferidos.
 - Só o estado atual: sem datas de progresso, planos ou implementação presumida.
-- Tabela só com células curtas; texto longo vai em lista, porque o Prettier alinha as colunas e uma célula longa alarga todas as linhas.
-- Títulos estáveis e únicos: fichas e revisões citam a entrada pelo título (`padroes.md › <título>`).
-- Antes de acrescentar, procure a entrada que já cobre o assunto e edite-a; entrada que perdeu o objeto sai.
+  - Exceção: as datas reais de `backlog.md` e de `impactos/`.
+- Tabela só com células curtas; texto longo vai em lista.
+  - Por quê: o Prettier alinha as colunas, e uma célula longa alarga todas as linhas.
+- Títulos estáveis e únicos: fichas, revisões e outros arquivos citam a entrada pelo título (`padroes.md › <título>`).
+- Antes de acrescentar, procure a entrada que já cobre o assunto e edite-a. Entrada que perdeu o objeto sai.
 
 ## Normas (`normas.md`)
 
@@ -81,7 +102,6 @@ Entradas agrupadas por área (`##`):
 - Só fatos conferidos no destino: não registre como existente, instalado, disponível, confiável ou testado o que não foi conferido.
 - Aponte para as fontes reais; não copie o conteúdo delas nem registre uma implementação presumida.
 - Estado de adoção: o atual, sem histórico.
-- Mudanças de direção seguem `orquestracao.md`.
 - Fontes de referência: só as que ficam fora do código ou que uma norma manda registrar, numa `### <área>` por assunto, com itens `` - <papel>: `<caminho>` ``.
 
 ## Particularidades (`particularidades.md`)
@@ -109,18 +129,52 @@ Só os rótulos que se aplicam, agrupados por área:
   - Por quê: <motivo>
 ```
 
+## Backlog (`backlog.md`)
+
+### Critérios
+
+Entra:
+
+- achado confirmado fora do escopo da tarefa;
+- achado não crítico que ficou aberto depois do último ciclo de revisão;
+- proposta de mudança na pipeline que aguarda aprovação;
+- pendência que o humano adiou.
+
+Não entra: defeito do trabalho entregue (corrija antes), achado sem base, funcionalidade que ninguém pediu, assunto que já tem entrada.
+
+- Uma entrada sai quando é resolvida, quando o humano a recusa ou quando perde o objeto.
+- Entradas agrupadas em `## Achados`, `## Propostas` e `## Pendências`.
+
+### Modelo
+
+Só os rótulos que se aplicam:
+
+```markdown
+### <título curto e único>
+
+- Gravidade: crítico | desvio
+- Onde: `<caminho:linha>` ou <área>
+- O quê: <o problema, a pendência ou o texto da proposta>
+- Evidência: <reprodução, trecho ou referência>
+- Origem: <AAAA-MM-DD real>, <o pedido em poucas palavras>
+- Recomendação: <o que fazer e por quê>
+```
+
+- `Gravidade` só em achados, com os valores de `revisao.md › Gravidade`.
+- Numa proposta, `O quê` traz a proposta inteira no formato de `evolucao.md › Proposta`, para que ela possa ser aprovada depois sem ser refeita.
+
 ## Impactos (`impactos/`)
 
-- Histórico de ocorrências reais desta instalação.
+- Ocorrências reais desta instalação em que uma instrução da pipeline causou ou não evitou um problema: achado com causa `pipeline` ou `indeterminada`, retrabalho, pergunta desnecessária, resíduo ou reclamação do humano.
 - Arquivo: `impactos/<AAAA-MM-DD>-<assunto>.md`, com a data real.
 - Sem incidentes hipotéticos.
 
 ```markdown
 # <AAAA-MM-DD>: <o que aconteceu>
 
-Causa: <a instrução e por que levou ao problema>
+Causa: pipeline (<norma ou instrução> ausente | ambígua | contraditória | desatualizada) | indeterminada (<hipóteses>)
 
 Efeito: <o que se observou>
 
-Correção: <o que mudou na pipeline>
+Correção: <o que mudou no código e na pipeline; mudança só proposta fica como "proposta, aguarda aprovação">
 ```
