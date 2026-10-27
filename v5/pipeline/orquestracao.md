@@ -8,7 +8,7 @@
 - Não escreva código do produto, nem numa correção trivial: o `t0` existe para isso.
   - Por quê: o seu contexto guarda a visão geral e a conferência da tarefa; escrever código o consome e junta quem faz com quem confere.
 - Você é o único que escreve em `pipeline/`. Antes de mudar qualquer arquivo dela, leia `evolucao.md` e `escrita.md`.
-- O humano decide a direção do produto e aprova o que altera ou remove normas. As decisões de implementação são suas.
+- O humano decide a direção do produto e aprova as mudanças na pipeline que `evolucao.md` não deixa você aplicar sozinho. As decisões de implementação são suas.
 
 Pergunta, conversa ou pedido de explicação não é tarefa: responda e pronto.
 
@@ -19,13 +19,10 @@ Pergunta, conversa ou pedido de explicação não é tarefa: responda e pronto.
 Pergunte ao humano só quando a decisão se encaixar em um destes casos:
 
 - **Irreversível ou de alto impacto:** as decisões caras de desfazer de `AGENTS.md › Limites`, mudar o produto de forma significativa ou mudar a arquitetura.
-- **Ambiguidade que muda o resultado:** o pedido tem mais de uma leitura razoável, nenhuma claramente melhor, e elas levam a entregas que o humano avaliaria de forma diferente.
+- **Ambiguidade que muda o resultado:** o pedido tem mais de uma leitura razoável, nenhuma claramente melhor, e elas levam a entregas que o humano avaliaria de forma diferente. Mais raciocínio não resolve isso.
 - **Informação que só o humano tem:** regra de negócio, credencial, prioridade entre objetivos, preferência sem registro.
 
-Fora desses casos, decida.
-
-- Explore o código antes de perguntar: muita dúvida que parece pergunta se resolve lendo.
-- Mais raciocínio não resolve ambiguidade: se ela muda o resultado, é pergunta.
+Fora desses casos, decida. Explore o código antes de perguntar: muita dúvida que parece pergunta se resolve lendo.
 
 ### Como perguntar
 
@@ -77,12 +74,12 @@ Para cada lacuna, siga `evolucao.md` **antes de delegar**: avalie o impacto, apl
 - Critérios: todo critério vem do pedido, das respostas ou do que o objetivo implica; nada inventado, cortado ou ampliado.
 - Arquivos novos: siga as normas, os padrões e a estrutura existente. Sem referência suficiente, escolha uma organização coerente com a responsabilidade e com a documentação das ferramentas adotadas.
 - Divisão: divida quando houver partes independentes, níveis diferentes ou uma decisão que possa ser resolvida antes das réplicas. Não fragmente um trabalho coeso só para criar agentes.
-- Ferramenta que o agente do nível não tem (inclusive de MCP): faça a etapa você mesmo, se ela não for escrever código do produto, ou acrescente a ferramenta ao `tools` da definição, como mudança protegida que só vale numa sessão aberta depois dela.
+- Ferramenta que o agente do nível não tem (inclusive de MCP): faça a etapa você mesmo, se ela não for escrever código do produto. Se for, proponha acrescentar a ferramenta ao `tools` da definição (`evolucao.md`); a mudança só vale numa sessão aberta depois dela.
   - Por quê: no Claude Code, o `tools` de cada definição é lista fechada, e cada ferramenta pesa no contexto de todos os turnos.
 
 ### Nível
 
-Classifique cada ficha **depois da divisão**, pelo julgamento que ainda cabe ao implementador. Confira os critérios nesta ordem e escolha o primeiro que a ficha cumpre:
+Classifique cada ficha **depois da divisão**, pelo julgamento que ainda cabe ao implementador. Escolha o menor nível que dá conta de todo esse julgamento, conferindo nesta ordem:
 
 1. `t0`, tarefa mecânica. Entrada, saída e aceite estão fechados:
    - entrada: tudo o que o implementador precisa está na ficha ou numa referência inequívoca (exemplar, configuração base, documentação oficial);
@@ -114,7 +111,7 @@ Cada arquivo, artefato gerado ou recurso exclusivo tem um único dono por vez.
 - A ficha é dona dos seus arquivos e artefatos permitidos desde o disparo até a conferência do retorno.
 - Enquanto uma ficha é dona, ninguém mais escreve ali: nem outra ficha, nem você.
 - `pipeline/` é sua o tempo todo; nenhuma ficha a recebe.
-- Fora das fichas, os arquivos são seus, e só você decide o próximo dono.
+- Arquivo sem ficha dona fica sob seu controle: só você atribui o próximo dono.
 
 Antes de disparar a onda, monte o mapa de donos. Para cada ficha, liste:
 
@@ -165,8 +162,9 @@ Depois da última onda:
 - **Produto**, na medida do risco:
   - mudança visível → olhe a tela;
   - comportamento novo → exercite o fluxo e os casos criados;
-  - sinal de risco (seção 6) → exercite também o caminho de falha: acesso negado, dado inválido, exclusão.
-- Observe as rotas e os fluxos afetados e confira as respostas. Não presuma comandos, portas, rotas, credenciais ou serviços.
+  - sinal de risco (seção 6) → exercite também o caminho de falha: acesso negado, dado inválido, exclusão;
+  - em todos os casos, observe as rotas e os fluxos afetados e confira as respostas.
+- Não presuma comandos, portas, rotas, credenciais ou serviços: confira-os em `README.md` e `projeto.md`.
 
 ## 6. Revise
 
@@ -201,13 +199,13 @@ Sem sinal de risco, a conferência da seção 5 basta.
 Uma tarefa tem no máximo dois ciclos de revisão:
 
 1. **Primeiro ciclo:** revisão completa do conjunto.
-2. **Segundo ciclo**, só se houve correção de achado crítico ou correção substancial: um revisor novo confere só os achados do primeiro ciclo e as correções (`revisao.md › Segunda revisão`).
+2. **Segundo ciclo**, só se houve correção de achado crítico ou correção substancial (que mudou lógica ou contrato, não só texto, estilo ou nome): um revisor novo confere só os achados do primeiro ciclo e as correções (`revisao.md › Segunda revisão`).
 
-Antes de corrigir os achados de um ciclo, guarde o estado revisado: ele é a referência do ciclo seguinte.
+Antes de mandar corrigir os achados de um ciclo, guarde o estado revisado: ele é a referência do ciclo seguinte.
 
 Não há terceiro ciclo. O que sobrar do segundo:
 
-- achado crítico → corrija e confirme você mesmo, reproduzindo a evidência do achado e rodando as checagens; se a correção falhar, a ficha segue a seção 7 até a entrega parcial;
+- achado crítico → a correção segue a causa, como no primeiro ciclo, e quem confirma é você, no lugar de um terceiro revisor: reproduza a evidência do achado e rode as checagens. Se a correção falhar, a ficha segue a seção 7 até a entrega parcial.
 - achado não crítico → vai para o backlog.
 
 Revisão sem veredito (`Incompleta:`) não conta como ciclo: chame um revisor novo uma vez. Se de novo não terminar, diga na entrega.
@@ -216,11 +214,11 @@ Revisão sem veredito (`Incompleta:`) não conta como ciclo: chame um revisor no
 
 Trate cada achado nesta ordem:
 
-1. **Confirme.** Reproduza ou siga o código. Achado sem base (hipotético, preferência, fora do diff, lacuna de checagem) é descartado sem repassar.
+1. **Confirme.** Reproduza ou siga o código. Achado sem base (hipotético, preferência, lacuna de checagem) é descartado sem repassar.
 2. **Gravidade.** Mantenha a do revisor ou reclassifique com motivo, pelas definições de `revisao.md › Gravidade`.
 3. **Escopo.**
-   - Achado no que a tarefa mudou: corrija nesta tarefa. Depois do último ciclo, siga Ciclos.
-   - Achado em `Fora do escopo:`: vai para o backlog e não bloqueia a entrega. Se for crítico, corrigi-lo agora amplia o escopo e é pergunta, levada na entrega.
+   - Achado no que a tarefa mudou: é corrigido nesta tarefa. Depois do último ciclo, siga Ciclos.
+   - Achado em código que a mudança não tocou, esteja ou não em `Fora do escopo:`: vai para o backlog e não bloqueia a entrega. Se for crítico, corrigi-lo agora amplia o escopo e é pergunta, levada na entrega.
 4. **Causa.** Classifique antes de corrigir (abaixo).
 5. **Correção**, conforme a causa.
 
@@ -237,14 +235,16 @@ Causas:
 - `pipeline`: uma norma ou instrução estava ausente, ambígua, contraditória ou desatualizada, e um implementador competente que a seguisse poderia chegar ao mesmo resultado.
 - `indeterminada`: a evidência não permite escolher entre as anteriores.
 
+O campo `Pipeline:` do achado, quando vem, é indício de causa `pipeline`, não prova: confira o trecho citado.
+
 Antes de classificar como `indeterminada`, procure em `impactos/` uma ocorrência parecida. A segunda ocorrência do mesmo tipo de achado é `pipeline`: as instruções não estão evitando o erro.
 
 Correção por causa:
 
 - `implementação` → é falha da ficha; a nova tentativa segue a seção 7.
 - `ficha` → segue "ficha ambígua ou incompleta" da seção 7: não é falha do implementador.
-- `pipeline` → mude a norma ou instrução por `evolucao.md` (aplicar ou propor), corrija o código como defeito diagnosticado (seção 7) e registre em `impactos/`. Se a correção certa depende de uma mudança que aguarda aprovação, siga `evolucao.md › Enquanto a proposta aguarda`.
-- `indeterminada` → corrija o código como defeito diagnosticado, sem mudar normas por suposição, e registre em `impactos/` com as hipóteses.
+- `pipeline` → mude a norma ou instrução por `evolucao.md` (aplicar ou propor) e registre em `impactos/`. Se o código precisar mudar, a correção segue "defeito diagnosticado" da seção 7. Se ela depende de uma mudança que aguarda aprovação, siga `evolucao.md › Enquanto a proposta aguarda`.
+- `indeterminada` → a correção do código segue "defeito diagnosticado" da seção 7. Não mude normas por suposição; registre em `impactos/` com as hipóteses.
 
 ## 7. Falhas e escalonamento
 
@@ -281,6 +281,6 @@ Pedido atendido e sem bloqueio real é tarefa concluída; diga isso.
   - como você verificou.
 - Aceitar a entrega aprova as mudanças aplicadas e as protegidas declaradas. Se o humano recusar alguma, desfaça-a e ajuste o resto. Proposta só vale com aprovação explícita.
 
-Não entram: defeito do trabalho (corrija antes), achado descartado, comentário sobre código não tocado fora do backlog, lista de arquivos ou fichas, oferta de próximos passos, o que já foi dito.
+Não entram: defeito do trabalho (corrija antes), achado descartado, comentário sobre código não tocado (o que importa vai para o backlog), lista de arquivos ou fichas, oferta de próximos passos, o que já foi dito.
 
 Quando o humano pedir o commit, use Conventional Commits no idioma de `projeto.md › Convenções`. No corpo, repita da entrega as decisões e as mudanças aplicadas na pipeline, cada uma com o motivo: o `git log` é o registro que dura.

@@ -49,8 +49,8 @@ Código que contradiz uma norma é legado: não o imite e não o corrija fora do
 
 ### Escopo
 
-- Escreva só nos arquivos e artefatos permitidos que a ficha lista. Eles são seus até o orquestrador conferir o retorno; nenhum outro agente escreve neles nesse tempo.
-- Se um arquivo seu mudar sem que você o tenha escrito, pare e devolva como bloqueio.
+- Escreva só nos arquivos e artefatos permitidos que a ficha lista.
+- Se um deles mudar sem que você o tenha escrito, pare e devolva como bloqueio: outro agente pode estar escrevendo no mesmo arquivo.
 - Leia o que precisar, dentro das restrições da ficha.
 - É bloqueio: precisar escrever em outro arquivo, mudar o contrato ou decidir algo que a ficha não deixa em `Livre`.
 

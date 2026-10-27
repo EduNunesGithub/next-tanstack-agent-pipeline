@@ -34,7 +34,7 @@ Uma biblioteca nova costuma pedir duas entradas em momentos diferentes:
 
 - Entrada nova em `normas.md` ou em `projeto.md › Convenções` que seja aditiva e sem conflito (abaixo).
 - Entrada nova, alterada ou removida em `padroes.md`, `particularidades.md` e `backlog.md`.
-  - Por quê: padrões não são normas; o próprio arquivo prevê o desvio justificado e a atualização da entrada.
+  - Por quê: esses arquivos registram formas, armadilhas e pendências, não limites; `padroes.md` já prevê o desvio justificado e a atualização da entrada.
 - Fato conferido em `projeto.md`: estado de adoção, fontes de referência, checagens, paralelismo, arquivo protegido novo.
 - Manutenção de uma norma que não muda o que ela exige: acrescentar o `Checagem:` que a garante, tirar de `Legado:` um caminho que passou a cumprir, atualizar um caminho que mudou de lugar.
 - Registro em `impactos/`.
@@ -63,7 +63,7 @@ Na dúvida, proponha.
 
 - Siga a norma ou instrução vigente.
 - Se a tarefa não puder ser entregue cumprindo a norma vigente, a proposta é pergunta e a entrega começa com `Preciso de uma decisão.`
-- Proposta que o humano não respondeu até a entrega vai para `backlog.md › Propostas`, inteira.
+- Na entrega, toda proposta ainda sem resposta vai para `backlog.md › Propostas`, inteira. Ela sai de lá quando o humano aprovar ou recusar.
 
 ## Proposta
 

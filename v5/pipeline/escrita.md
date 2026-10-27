@@ -27,7 +27,7 @@ Clareza não é brevidade. Uma regra clara é estruturada e direta: diz o que fa
 - Como rodar, para pessoas: `README.md`.
 - Documentação do produto escrita pelo humano: `docs/`, registrada como fonte em `projeto.md`.
 - Estrutura, comportamento e configuração: o próprio código. A pipeline não copia nem aponta o que um agente acha lendo o código; cada linha existe porque, sem ela, um agente competente decidiria pior.
-- Decisões de uma tarefa: na entrega e no corpo do commit. As que outras tarefas precisam repetir vão para `padroes.md`.
+- Decisões de uma tarefa: conforme `orquestracao.md › Registro das decisões`.
 - Histórico: `git log`. Nenhum arquivo guarda o que já foi feito, exceto `impactos/`, que guarda ocorrências para que a recorrência seja reconhecida.
 
 ## Estilo
