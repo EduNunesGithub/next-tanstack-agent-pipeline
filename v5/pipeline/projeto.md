@@ -19,12 +19,12 @@
 
 ## Paralelismo
 
-- Limite por onda: até 10 fichas, reduzido à capacidade disponível na ferramenta ou conta. Falta de vagas divide a onda; não muda o nível das fichas.
+- Limite por onda: até 10 fichas, reduzido à capacidade disponível na ferramenta ou conta.
 - Recursos exclusivos: nenhum registrado.
 
 ## Arquivos protegidos
 
 - Instruções e ferramentas de agente: `AGENTS.md`, `CLAUDE.md`, `.claude/` e `.codex/`.
-- Instruções da pipeline: `pipeline/`, exceto `pipeline/padroes.md`, `pipeline/particularidades.md` e `pipeline/impactos/`.
+- Instruções da pipeline: `pipeline/adocao.md`, `pipeline/escrita.md`, `pipeline/evolucao.md`, `pipeline/ficha.md`, `pipeline/orquestracao.md`, `pipeline/projeto.md`, `pipeline/revisao.md` e `pipeline/stack.md`.
 - Repositório: `.gitattributes`.
 - Configuração protegida nova: ao criá-la ou adotá-la, registre seu caminho real aqui e inclua a regra correspondente em `.claude/settings.json` na mesma entrega, antes de delegar alterações posteriores.

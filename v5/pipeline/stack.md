@@ -36,4 +36,6 @@ As bibliotecas orientam as soluções para as necessidades que cobrem. A composi
 - Localize e consulte a documentação oficial atual das bibliotecas envolvidas, conferindo as instruções pertinentes à versão adotada.
 - Em um projeto novo, escolha versões compatíveis entre si, com o runtime e com a necessidade do projeto, priorizando versões estáveis quando disponíveis. Em um projeto existente, parta das dependências instaladas; mudanças de versão acompanham a necessidade da tarefa e suas verificações.
 - Plugins, adaptadores, integrações, definições de tipos e outras dependências de suporte são escolhidos conforme a documentação de instalação e as normas; não há uma lista fixa no template.
-- O manifesto de dependências e o lock adotados no destino são as fontes das versões instaladas e da instalação reproduzível. Trocas de bibliotecas principais ou decisões que mudem a arquitetura seguem `orquestracao.md`.
+- O manifesto de dependências e o lock adotados no destino são as fontes das versões instaladas e da instalação reproduzível.
+- Instalar uma biblioteca desta lista, ou um complemento que a documentação oficial dela exige, não pede autorização: o humano já escolheu a stack. A primeira instalação de cada uma passa pela cobertura da pipeline (`orquestracao.md › Cobertura da pipeline`).
+- Dependência fora desta lista, troca de biblioteca principal ou decisão que mude a arquitetura é pergunta (`orquestracao.md › Autonomia`). Mudar esta lista segue `evolucao.md`.
