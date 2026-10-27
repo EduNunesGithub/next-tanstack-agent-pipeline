@@ -1,0 +1,32 @@
+{
+  "autoMemoryEnabled": false,
+  "permissions": {
+    "ask": [
+      "Bash(git checkout *)",
+      "Bash(git clean *)",
+      "Bash(git commit *)",
+      "Bash(git reset *)",
+      "Bash(git restore *)",
+      "Bash(git stash *)",
+      "Edit(/.claude/**)",
+      "Edit(/.codex/**)",
+      "Edit(/.gitattributes)",
+      "Edit(/AGENTS.md)",
+      "Edit(/CLAUDE.md)",
+      "Edit(/pipeline/adocao.md)",
+      "Edit(/pipeline/escrita.md)",
+      "Edit(/pipeline/ficha.md)",
+      "Edit(/pipeline/normas.md)",
+      "Edit(/pipeline/orquestracao.md)",
+      "Edit(/pipeline/projeto.md)",
+      "Edit(/pipeline/revisao.md)",
+      "Edit(/pipeline/stack.md)",
+      "PowerShell(git checkout *)",
+      "PowerShell(git clean *)",
+      "PowerShell(git commit *)",
+      "PowerShell(git reset *)",
+      "PowerShell(git restore *)",
+      "PowerShell(git stash *)"
+    ]
+  }
+}

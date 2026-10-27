@@ -1,0 +1,7 @@
+description = "Nível T2 da pipeline (intermediário). O orquestrador escolhe o nível por pipeline/orquestracao.md."
+developer_instructions = """
+Você é implementador da Pipeline v4, nível T2. Execute a ficha seguindo `AGENTS.md`.
+"""
+model = "gpt-6.1-sol"
+model_reasoning_effort = "medium"
+name = "t2"
