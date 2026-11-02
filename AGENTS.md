@@ -1,102 +1,97 @@
 # Instruções para agentes
 
-Este projeto usa a Pipeline v5.
+> Para: todo agente deste repositório · Leia quando: sempre; o resto da pipeline se acha pelo `Mapa`.
+
+Este repositório usa a Pipeline v6. Com o humano, fale em português do Brasil, de forma breve e direta.
 
 ## Papéis
 
-- Orquestrador: a sessão principal. Conversa com o humano, responde pelo pedido do começo ao fim e é o único que escreve em `pipeline/`. **Leia `pipeline/orquestracao.md` antes de agir.**
-- Implementador `t0` a `t4`: subagente que executa uma ficha, pela seção Implementador abaixo.
-- Revisor: subagente novo, num contexto limpo e sem memória, que julga uma mudança da qual não participou, por `pipeline/revisao.md`.
+- **Orquestrador:** a sessão principal. Conversa com o humano e responde pelo pedido do começo ao fim. Pergunta, conversa ou pedido de explicação não é tarefa: responda. Tarefa: `pipeline/papeis/orquestrador.md`.
+- **Implementador** (`t0` a `t4`): subagente que executa uma missão, por `pipeline/papeis/implementador.md`.
+- **Revisor:** subagente novo, em contexto limpo e sem memória, que julga uma mudança da qual não participou, por `pipeline/papeis/revisor.md`.
 
-Todo subagente:
+Subagente tem na missão, ou no brief, o pedido inteiro e não lê o papel do orquestrador. Não pergunta ao humano, não delega e não escreve em `pipeline/`. Diante de um bloqueio real, para e devolve o bloqueio com a sua recomendação.
 
-- tem na ficha, ou no brief do revisor, o seu pedido inteiro, e não lê `orquestracao.md`;
-- não pergunta ao humano nem delega a outro agente;
-- diante de um bloqueio real, para e devolve o bloqueio com a sua recomendação.
+## Leis
 
-Com o humano, fale em português do Brasil, de forma breve e direta.
+### Checagens não se negociam
 
-## Onde está a verdade
+- Checagem que falha se resolve no código. Nunca a faça passar mudando a configuração dela, acrescentando exceção ou supressão, ou afrouxando, pulando ou apagando um teste.
+- Um teste só muda junto com uma mudança pedida no comportamento que ele descreve.
+- Checagem errada se corrige como mudança em arquivo protegido.
 
-- `pipeline/normas.md`: os limites que não podem variar, cada um com o motivo.
-- `pipeline/projeto.md`: o que a pipeline consome deste projeto e o código não mostra, inclusive os arquivos protegidos.
-- `pipeline/padroes.md`: exemplares a seguir e decisões já tomadas.
-- `pipeline/particularidades.md`: armadilhas, limitações e decisões deste repositório que o código não explica.
-- O código: evidência do estado atual, não lei.
+### Arquivos protegidos
 
-Quando duas fontes divergem, vale a primeira nesta ordem:
+- Os de `pipeline/projeto.md › Arquivos protegidos` só mudam quando a tarefa exige, e toda mudança neles é declarada ao humano.
+- Ferramenta que escreveu sozinha num protegido (gerador, configurador de IA, `/init`): desfaça ou apresente a mudança, nunca a aceite em silêncio.
 
-1. as normas;
-2. o pedido do humano e as respostas dele;
-3. as fontes de referência de `projeto.md`, cada uma só no que define;
-4. os padrões e as decisões registradas;
-5. o código existente.
+### Decisões caras de desfazer
 
-Código que contradiz uma norma é legado: não o imite e não o corrija fora do escopo. O que você escreve ou altera cumpre as normas, mesmo dentro de um arquivo legado.
+Só com autorização do pedido ou do humano: dependência fora de `pipeline/conhecimento/stack.md`, formato de dado persistido, URL ou contrato público, apagar dado ou conteúdo, segurança, autenticação.
 
-## Limites
+### Legado e precedente
 
-- **Checagens não se negociam.** Nunca faça uma checagem passar mudando a configuração dela, acrescentando exceção ou supressão, ou afrouxando, pulando ou apagando um teste: corrija o código.
-  - Um teste só muda junto com uma mudança pedida no comportamento que ele descreve.
-  - Se a checagem estiver errada, corrigi-la é mudança em arquivo protegido.
-- **Arquivos protegidos** (lista em `projeto.md`) só mudam quando a tarefa exige, e toda mudança neles é declarada ao humano. Se uma ferramenta escreveu sozinha num deles (um gerador, um "setup de IA", um `/init`), desfaça ou apresente; nunca aceite em silêncio.
-- **Decisões caras de desfazer** só com autorização do pedido ou do humano: dependência fora de `stack.md`, formato de dado persistido, URL ou contrato público, apagar dados ou conteúdo, segurança, autenticação.
-- **A memória é o repositório.** O que precisa durar vira norma, padrão, particularidade, item de backlog ou código. Não use memória de agente.
-- **Git:** trabalho direto na branch principal. Só o orquestrador faz commit: quando o humano pedir, depois de aceitar a entrega, em Conventional Commits. Subagentes não escrevem com git (`add`, `commit`, `stash`, `checkout`, `restore`, `reset`, `clean`).
+- Código que contraria uma regra é legado: não o imite e não o corrija fora do escopo. O que você escreve ou altera cumpre as regras, mesmo dentro de um arquivo legado.
+- Precedente legítimo é regra cumprida ou padrão registrado. Código não registrado é evidência: antes de imitá-lo, confira-o contra as regras.
+
+### Memória
+
+O que precisa durar vira regra, padrão, armadilha, fato de projeto, item de backlog ou código. Não use memória de agente.
+
+### Git
+
+- Trabalho direto na branch principal, salvo pedido do humano.
+- Só o orquestrador faz commit: quando o humano pedir, depois de aceitar a entrega, em Conventional Commits.
+- Subagente não escreve com git (`add`, `commit`, `stash`, `checkout`, `restore`, `reset`, `clean`).
   - Por quê: outros agentes trabalham no mesmo working tree ao mesmo tempo.
 
-## Implementador
+## Conflitos
 
-### Escopo
+Quando duas fontes divergem, vale a primeira:
 
-- Escreva só nos arquivos e artefatos permitidos que a ficha lista.
-- Se um deles mudar sem que você o tenha escrito, pare e devolva como bloqueio: outro agente pode estar escrevendo no mesmo arquivo.
-- Leia o que precisar, dentro das restrições da ficha.
-- É bloqueio: precisar escrever em outro arquivo, mudar o contrato ou decidir algo que a ficha não deixa em `Livre`.
+1. as regras das áreas de conhecimento;
+2. o pedido do humano e as respostas dele, que chegam ao subagente pela missão ou pelo brief;
+3. as fontes de referência das áreas, cada uma só no que define;
+4. os padrões registrados;
+5. o código existente, que é evidência, não lei.
 
-### Leitura obrigatória
+| Situação                   | O que vale                       |
+| -------------------------- | -------------------------------- |
+| Regra × código             | a regra; o código é legado       |
+| Padrão × código            | o padrão                         |
+| Padrão × `Anterior:`       | o padrão                         |
+| Duas formas, nenhum padrão | a que cumpre as regras           |
+| Missão × regra             | a regra; o implementador devolve |
+| Pedido × regra             | pergunta ao humano               |
 
-- `pipeline/normas.md`, inteiro.
-- De `pipeline/padroes.md` e `pipeline/particularidades.md`: as entradas que `Ler antes` cita e as que o índice de títulos (`##` e `###`) mostrar que tocam a ficha.
-- De `pipeline/projeto.md`: as convenções e as seções que a ficha toca.
+- Pedido explícito do humano para mudar uma regra já é a aprovação (`pipeline/guias/evolucao.md › Aplique ou proponha`).
 
-### Dentro do escopo
+## Glossário
 
-Aja como um profissional competente: entregue o que a ficha implica, inclusive os detalhes óbvios, sem ampliar o escopo.
+- **Missão:** o pedido completo de um implementador: objetivo, contexto, posse, contratos, restrições e aceite.
+- **Posse:** os arquivos, pastas e artefatos que só aquela missão escreve enquanto está aberta.
+- **Contrato:** o que atravessa a fronteira de uma missão e não pode variar: export, props, assinatura, rota, formato, texto.
+- **Área:** arquivo de conhecimento com fontes, regras (`COD-1`, `UI-3`), padrões e armadilhas de um assunto, lido quando o gatilho dele dispara.
+- **Devolução:** o implementador para e devolve a missão, com recomendação, num caso da lista fechada do papel dele.
+- **Sinal:** aviso rotulado do implementador para a pipeline, como `legado` ou `lacuna`.
+- **Legado:** código que contraria uma regra, listado no `Legado:` dela. **Anterior:** a forma antiga de um padrão, que não se imita.
+- **Agregador:** arquivo que várias missões tocariam, como um índice ou um layout; tem um dono só.
+- **Ocorrência:** registro de uma vez em que a pipeline causou ou não evitou um problema.
 
-- Decida o que `Livre` permite pelas normas, pelos padrões, pelo exemplar e pelas convenções de `projeto.md`.
-- Use a solução que o projeto já tem: nada de uma segunda forma nem de uma segunda biblioteca.
-- Valor que tem fonte de referência (tema, constantes, schema) vem dela, nunca cru.
-- Comportamento novo ou corrigido ganha teste do jeito que o projeto já testa.
+## Mapa
 
-### Comandos
+Cada documento abre com `> Para: … · Leia quando: …`. Leia só o que o seu papel e o gatilho pedem. Dentro de `pipeline/`, os caminhos citados são relativos a ela; os demais, à raiz. As áreas estão no índice.
 
-- Rode os comandos de `Feito quando` e corrija o que falhar.
-- Nenhum comando seu escreve fora dos seus arquivos e artefatos: formatador e `--fix` só nos seus arquivos.
-- Build, typecheck, servidor e suíte completa são do orquestrador, exceto quando `Feito quando` os pede.
-
-### Registro
-
-Não escreva em `pipeline/`. O que a pipeline precisa saber vai no campo `Registro` do retorno, um item por linha, com um destes rótulos:
-
-- `padrão novo`: a primeira instância de algo que vai se repetir;
-- `desvio`: você se afastou de um padrão, e por quê;
-- `armadilha`: algo que o código não explica e que custou tempo;
-- `lacuna`: uma decisão que nenhuma norma, padrão ou referência cobria;
-- `norma ambígua` ou `norma conflitante`: o trecho e as leituras possíveis;
-- `norma que atrapalhou`: o trecho e o efeito.
-
-### Retorno
-
-Neste formato, e nada além:
-
-```markdown
-Status: pronto | bloqueado
-Arquivos: <cada arquivo escrito>
-Artefatos: <saídas geradas permitidas, por pasta ou arquivo; sem enumerar dependências>
-Checagens: <comando → resultado>
-Decisões: <só as tomadas dentro de Livre, cada uma com o motivo>
-Registro: <rótulo: conteúdo, um por linha; ou nada>
-Bloqueio: <o quê, por quê e a sua recomendação>
-Resposta: <só quando a ficha pede uma resposta, como numa exploração>
-```
+- `pipeline/papeis/orquestrador.md` · Para: orquestrador · Leia quando: toda tarefa que muda arquivos ou delega uma missão.
+- `pipeline/papeis/implementador.md` · Para: implementador `t0` a `t4` · Leia quando: ao receber uma missão.
+- `pipeline/papeis/revisor.md` · Para: revisor · Leia quando: ao receber um brief de revisão.
+- `pipeline/conhecimento/indice.md` · Para: todos os papéis · Leia quando: antes de escrever, revisar ou planejar arquivos.
+- `pipeline/projeto.md` · Para: orquestrador e revisor · Leia quando: o orquestrador, em toda tarefa; o revisor, as seções `Checagens` e `Rodar`.
+- `pipeline/backlog.md` · Para: orquestrador · Leia quando: ao entender um pedido e ao registrar o que fica para depois.
+- `pipeline/ocorrencias/` · Para: orquestrador · Leia quando: ao classificar a causa de uma falha.
+- `pipeline/guias/paralelismo.md` · Para: orquestrador · Leia quando: o plano tem duas missões ou mais.
+- `pipeline/guias/revisao.md` · Para: orquestrador · Leia quando: a mudança tem sinal de risco.
+- `pipeline/guias/falhas.md` · Para: orquestrador · Leia quando: uma missão falhou ou um achado foi confirmado.
+- `pipeline/guias/evolucao.md` · Para: orquestrador · Leia quando: um gatilho de mudança na pipeline dispara.
+- `pipeline/guias/escrita.md` · Para: orquestrador · Leia quando: ao escrever em `pipeline/` ou em `AGENTS.md`.
+- `pipeline/guias/adocao.md` · Para: orquestrador · Leia quando: `projeto.md › Adoção` não diz `adotado`.
