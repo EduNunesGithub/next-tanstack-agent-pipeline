@@ -32,7 +32,9 @@ Quando o pedido cria a aplicação, planeje as missões por `papeis/orquestrador
 Além disso:
 
 - As decisões do produto novo (domínio, persistência, autenticação, integrações, identidade visual) vêm do pedido. A stack não transfere componentes, contratos nem decisões de produto de outra aplicação.
-- Nível num projeto vazio: criar uma aplicação Next.js não vira `t4` por ser do zero. Com a stack definida, dependências e configurações de resultado determinado podem ser `t0`; a primeira página com lógica local, `t2`, e as que repetem a forma dela, `t1`; uma integração com contrato por projetar, `t3`; autenticação com regras de acesso complexas, `t4`.
+- Nível da configuração: a missão que configura o projeto, nos passos 2 e 3, é `t4`, mesmo quando o resultado é determinado.
+  - Por quê: a configuração inicial fixa versões, checagens e convenções que todas as tarefas seguintes herdam, e um erro nela se repete em cada uma.
+- Nível do código do produto, pelo julgamento de `papeis/orquestrador.md › Nível`: a primeira página com lógica local, `t2`, e as que repetem a forma dela, `t1`; uma integração com contrato por projetar, `t3`; autenticação com regras de acesso complexas, `t4`.
 
 ### Checagens da aplicação
 

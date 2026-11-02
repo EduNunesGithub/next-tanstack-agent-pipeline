@@ -30,7 +30,7 @@ A escolha da stack é do humano. A tabela diz que biblioteca resolve cada necess
 | Gráficos                             | TanStack Charts                            |
 | Controle de execução                 | TanStack Pacer                             |
 | Cores e arquivos locais              | React Colorful e React Dropzone            |
-| Qualidade estática e formato         | ESLint e Prettier                          |
+| Qualidade estática e formato         | ESLint, Perfectionist e Prettier           |
 | Testes unitários                     | Vitest e Testing Library                   |
 | Testes de navegador                  | Playwright                                 |
 | Hooks Git e commits                  | Husky e Commitlint                         |
@@ -44,6 +44,7 @@ A escolha da stack é do humano. A tabela diz que biblioteca resolve cada necess
   - Antes de instalar, confira se o projeto, a tabela ou a plataforma já resolvem a necessidade.
   - O que a plataforma e o React resolvem sem esforço não pede biblioteca: a tabela não obriga a trocar `useState` ou `Array.filter` por uma biblioteca da mesma necessidade.
   - Instalar uma biblioteca da tabela, ou um complemento que a documentação oficial dela exige, não pede autorização.
+  - O pacote da configuração de ESLint que a documentação oficial de uma tecnologia do projeto recomenda (CFG-5) é complemento dela: instalá-lo também não pede autorização.
 - Exceção: dependência fora da tabela, troca de biblioteca principal ou mudança de arquitetura, com a autorização de `AGENTS.md › Decisões caras de desfazer`.
 
 ### STK-2: Uma biblioteca da tabela entra no projeto só quando o escopo do pedido precisa dela.

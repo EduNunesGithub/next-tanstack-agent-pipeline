@@ -19,6 +19,12 @@ Cada área tem quatro seções: `Fontes`, onde mora a verdade que não se copia;
 - Prefixo: `COD`
 - Gatilho: sempre que se escreve ou revisa um arquivo autoral.
 
+### Configuração
+
+- Arquivo: `conhecimento/configuracao.md`
+- Prefixo: `CFG`
+- Gatilho: arquivo de configuração de ferramenta ou em `eslint-rules/`, ou instalar ou remover uma dependência.
+
 ### Interface
 
 - Arquivo: `conhecimento/interface.md`

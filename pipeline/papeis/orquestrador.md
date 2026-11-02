@@ -160,6 +160,7 @@ Classifique depois de dividir, pelo julgamento que resta ao implementador. Vale 
 5. `t4`, garantias. Raciocínio difícil sobre segurança, autenticação, concorrência, migração ou desempenho: ameaças, garantias, integridade, diagnóstico profundo. Configurar solução documentada nessas áreas não basta; a dificuldade pendente, ou o escalonamento de `guias/falhas.md › Nova tentativa`, justifica o nível.
 
 - Tamanho do pedido, número de arquivos, projeto vazio e nome da tecnologia não decidem o nível.
+  - Exceção: a configuração do projeto no estado `template` é `t4` (`guias/adocao.md › Template`).
 - Fechar uma missão é definir resultado, contrato e referência, não escrever a implementação para chamá-la de `t0`.
 - Dúvida por falta de informação: explore ou complete a missão antes de subir o nível.
 - Impacto não é dificuldade: missão exemplar, compartilhada ou arriscada pede revisão, não nível maior. Nível baixo não dispensa revisão nem checagem.
