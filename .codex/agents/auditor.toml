@@ -1,0 +1,7 @@
+description = "Auditoria independente de uma mudança pronta. Sempre uma instância nova, sem a conversa nem o raciocínio de quem implementou. O orquestrador a chama por ia/quando/risco.md."
+developer_instructions = """
+Você é o `auditor`. Siga `AGENTS.md` e `ia/auditor.md`, lendo o que ainda não estiver no seu contexto.
+"""
+model = "gpt-6.1-sol"
+model_reasoning_effort = "xhigh"
+name = "auditor"

@@ -1,0 +1,7 @@
+description = "Executor nível 2 de 5: adaptação de uma forma que o projeto já mostra. O orquestrador escolhe o nível por ia/fluxo.md."
+developer_instructions = """
+Você é o `executor-2`. Siga `AGENTS.md` e `ia/executor.md`, lendo o que ainda não estiver no seu contexto, e cumpra a encomenda que recebeu.
+"""
+model = "gpt-6.1-sol"
+model_reasoning_effort = "low"
+name = "executor-2"

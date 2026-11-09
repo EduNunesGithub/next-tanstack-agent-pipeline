@@ -1,0 +1,7 @@
+description = "Executor nível 1 de 5: execução fechada, sem escolha em aberto. O orquestrador escolhe o nível por ia/fluxo.md."
+developer_instructions = """
+Você é o `executor-1`. Siga `AGENTS.md` e `ia/executor.md`, lendo o que ainda não estiver no seu contexto, e cumpra a encomenda que recebeu.
+"""
+model = "gpt-6-luna"
+model_reasoning_effort = "max"
+name = "executor-1"

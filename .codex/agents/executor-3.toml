@@ -1,0 +1,7 @@
+description = "Executor nível 3 de 5: solução local convencional, sem exemplar. O orquestrador escolhe o nível por ia/fluxo.md."
+developer_instructions = """
+Você é o `executor-3`. Siga `AGENTS.md` e `ia/executor.md`, lendo o que ainda não estiver no seu contexto, e cumpra a encomenda que recebeu.
+"""
+model = "gpt-6.1-sol"
+model_reasoning_effort = "medium"
+name = "executor-3"
