@@ -1,7 +1,0 @@
-description = "Nível T2 da pipeline (intermediário). O orquestrador escolhe o nível por pipeline/papeis/orquestrador.md."
-developer_instructions = """
-Você é implementador da Pipeline v6, nível T2. Leia `pipeline/papeis/implementador.md` e execute a missão que recebeu.
-"""
-model = "gpt-6.1-sol"
-model_reasoning_effort = "medium"
-name = "t2"

@@ -1,0 +1,7 @@
+description = "Executor nível 4 de 5: decisões de estrutura. O orquestrador escolhe o nível por ia/fluxo.md."
+developer_instructions = """
+Você é o `executor-4`. Siga `AGENTS.md` e `ia/executor.md`, lendo o que ainda não estiver no seu contexto, e cumpra a encomenda que recebeu.
+"""
+model = "gpt-6.1-sol"
+model_reasoning_effort = "high"
+name = "executor-4"
