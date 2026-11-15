@@ -26,16 +26,18 @@ Subagente sabe do pedido só o que recebeu. Não pergunta ao humano, não delega
 4. **Dívida não se imita.**
    - Código que contraria uma regra é dívida: não serve de exemplo e não se corrige fora do escopo.
    - O que você escreve ou altera cumpre as regras, mesmo dentro de um arquivo antigo.
-   - Código sem regra nem molde é só evidência: confira-o contra as regras antes de imitar.
-5. **O que deve durar mora no repositório:** regra, molde, alerta, fato, pendência ou código. Nunca memória de agente.
+   - Código existente é só evidência: confira-o contra as regras antes de imitar.
+5. **`ia/` só guarda o que o código não mostra.**
+   - O que deve durar mora no repositório, nunca em memória de agente: no código ou numa checagem, antes de em texto.
+   - Nunca transcreva o que se acha lendo o código, a árvore de pastas ou a configuração: caminho, nome, assinatura, implementação, lista do que existe.
 6. **Git.**
    - Trabalho direto na branch principal, salvo pedido do humano.
-   - Só o orquestrador faz commit: quando o humano pedir, em Conventional Commits.
-   - Subagente não escreve com git (`add`, `commit`, `stash`, `checkout`, `restore`, `reset`, `clean`): outros agentes usam o mesmo working tree.
+   - Só o orquestrador faz commit: quando o humano pedir, em Conventional Commits, em português do Brasil.
+   - Subagente só lê com git (`status`, `diff`, `log`, `show`). Nunca escreve no índice, no histórico nem no working tree (`add`, `mv`, `rm`, `stash`, `checkout`, `restore`, `reset`, `clean`): outros agentes usam o mesmo.
 
 ## Precedência
 
-Quando duas fontes divergem, vale a primeira: regra, pedido do humano, molde, código existente.
+Quando duas fontes divergem, vale a primeira: regra, pedido do humano, código existente.
 
 - Pedido contra regra: o orquestrador pergunta ao humano.
 - Encomenda contra regra: o executor devolve.
@@ -45,25 +47,27 @@ Quando duas fontes divergem, vale a primeira: regra, pedido do humano, molde, c�
 
 Antes de planejar, escrever ou auditar um arquivo, leia cada assunto que ele aciona. Na dúvida, leia.
 
-| Assunto     | Arquivo                    | Aciona                                                         |
-| ----------- | -------------------------- | -------------------------------------------------------------- |
-| Código      | `ia/regras/codigo.md`      | todo arquivo autoral                                           |
-| React       | `ia/regras/react.md`       | arquivo `.tsx` ou `.jsx`; hook ou contexto React               |
-| Visual      | `ia/regras/visual.md`      | `.tsx`, `.jsx` ou estilos; texto exibido, ícone ou animação    |
-| Ferramentas | `ia/regras/ferramentas.md` | configuração de ferramenta; `eslint-rules/`; mudar dependência |
-| Bibliotecas | `ia/regras/bibliotecas.md` | mudar dependência; importar pacote que não está no manifesto   |
+| Assunto     | Arquivo                    | Aciona                                                                            |
+| ----------- | -------------------------- | --------------------------------------------------------------------------------- |
+| Código      | `ia/regras/codigo.md`      | todo arquivo autoral                                                              |
+| React       | `ia/regras/react.md`       | arquivo `.tsx` ou `.jsx`; hook ou contexto React                                  |
+| Visual      | `ia/regras/visual.md`      | `.tsx`, `.jsx` ou estilos; texto exibido, ícone ou animação                       |
+| Next.js     | `ia/regras/next.md`        | arquivo em `app/`; `"use client"` ou `"use server"`; ler banco, sessão ou segredo |
+| TanStack    | `ia/regras/tanstack.md`    | importar `@tanstack/*`; formulário; dado buscado ou gravado a partir do cliente   |
+| Ferramentas | `ia/regras/ferramentas.md` | configuração de ferramenta; Docker; `eslint-rules/`; mudar dependência            |
+| Bibliotecas | `ia/regras/bibliotecas.md` | mudar dependência; importar pacote que não está no manifesto                      |
 
 ## Autocorreção
 
-A pipeline muda na mesma tarefa em que falha. Orquestrador, siga `ia/quando/reparo.md` assim que:
+A pipeline muda quando falha, não a cada tarefa. Orquestrador, siga `ia/quando/reparo.md` assim que:
 
 - o humano corrigir um comportamento seu ou der uma instrução duradoura ("a partir de agora", "sempre", "nunca");
-- uma instrução daqui causar ou não evitar um problema.
+- uma instrução daqui causar um problema, ou um problema se repetir.
 
 ## Vocabulário
 
 - **Encomenda:** o pedido completo que um executor recebe.
 - **Raia:** os arquivos que só uma encomenda escreve enquanto ela está aberta.
 - **Fixo:** o que cruza a raia e não pode variar: export, assinatura, rota, formato, texto.
-- **Regra:** limite com ID (`C1`, `V3`). **Molde:** forma a repetir, com exemplar. **Alerta:** o que o código não mostra e faria errar.
+- **Regra:** limite com ID (`C1`, `V3`). **Alerta:** armadilha que o código não mostra. **Exemplar:** código que cumpre as regras e mostra a forma a seguir.
 - **Dívida:** código que contraria uma regra.

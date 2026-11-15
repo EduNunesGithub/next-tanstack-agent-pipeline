@@ -1,6 +1,6 @@
 # Reparo
 
-Quando a pipeline causa ou não evita um problema, ela muda na mesma tarefa, sem pedir licença. As exceções estão em `Só com o humano`.
+A pipeline muda quando causa ou não evita um problema, na mesma tarefa, sem pedir licença. As exceções estão em `Só com o humano`. Tarefa sem gatilho não escreve em `ia/`.
 
 ## Gatilhos
 
@@ -13,84 +13,55 @@ Do humano:
 Seus:
 
 - falha ou achado de causa `pipeline` (`ia/quando/falha.md`);
-- aviso de executor, ou `Pipeline:` e `De passagem:` do auditor;
-- retrabalho, pergunta que o humano não precisava responder, resíduo deixado no repositório;
-- terreno novo com escolha aberta (`ia/fluxo.md › Terreno novo`);
+- aviso de executor ou `Pipeline:` do auditor, confirmado no código;
+- problema que uma linha de `ia/` já cobria e voltou a acontecer;
+- escolha de terreno novo que é obrigação e o código pronto não mostraria (`ia/fluxo.md › Terreno novo`);
 - referência quebrada, instrução contraditória ou sem objeto, vista de passagem.
+
+Não é gatilho: erro isolado que a checagem ou a conferência pegou; primeira ocorrência de uma forma; tarefa que correu bem.
 
 ## Passos
 
 1. **Efeito.** Corrija o problema da tarefa pelo caminho normal.
-2. **Causa.** Ache a linha que deixou acontecer e classifique:
-   - `ausente`: nenhuma instrução cobria;
-   - `ambígua`: admitia a leitura errada;
-   - `contraditória`: duas instruções divergiam;
-   - `velha`: descrevia algo que mudou;
-   - `não lida`: existia, mas nenhum gatilho levou até ela;
-   - `ignorada`: foi lida e não foi seguida.
-3. **Recorrência.** Procure o sintoma em `ia/diario.md`. Já está lá: `Escada`.
-4. **Remédio.** A menor mudança que remove a causa:
-   - `ausente`: entrada nova, no tipo e no lugar de `Onde mora`;
-   - `ambígua`: reescreva a linha; não acrescente outra;
-   - `contraditória`: fique com uma e apague a outra;
-   - `velha`: atualize ou apague;
-   - `não lida`: corrija o gatilho, ou leve a linha para onde ela é lida;
-   - `ignorada`: nada muda; só o registro.
-5. **Prova.** Releia como um agente novo, que carrega só o que os gatilhos mandam. Ele acertaria agora? Se não, volte ao 4.
-6. **Registro.** Uma linha em `ia/diario.md`, e o reparo declarado na entrega.
+2. **Causa.** Ache a linha que deixou acontecer: `ausente`, `ambígua`, `contraditória`, `velha`, `não lida` (nenhum gatilho levou até ela) ou `ignorada` (lida e não seguida).
+3. **Remédio.** O primeiro desta lista que remove a causa:
+   1. **Nada.** Um agente competente, com o código e as regras de hoje, acertaria. Vale para a `ignorada` que uma checagem ou a conferência pega.
+   2. **Menos texto.** `ambígua`: reescreva a linha, sem acrescentar outra. `contraditória`: fique com uma. `velha`: atualize ou apague.
+   3. **Checagem ou código.** Uma ferramenta verifica o erro sem exceção caso a caso (lint, tipo, teste), ou o código pode torná-lo impossível: encomende. A mensagem da checagem diz o que fazer; a regra, se existir, ganha `Garantia:`.
+   4. **Posição.** `não lida`, ou `ignorada` que nada pega: leve a linha para o momento da ação (o modelo da encomenda, `ia/executor.md › Antes de retornar` ou `ia/fluxo.md › 4. Confira`), ou corrija o gatilho. Nunca uma segunda linha.
+   5. **Texto.** Só para `ausente`, e só o que passa em `Entra em ia/`.
+   6. **Humano.** A linha já está no momento da ação e o problema voltou: leve o diagnóstico e as opções.
+4. **Prova.** Releia como um agente novo, que carrega só o que os gatilhos mandam. Ele acertaria agora? Se não, volte ao 3.
+5. **Declare** o reparo na entrega, numa linha.
 
-Não mudar nada é resultado válido: se um agente competente já decidiria certo, não escreva.
+## Entra em `ia/`
 
-## Escada
+Uma entrada nova responde sim às três perguntas:
 
-Sintoma repetido prova que o remédio anterior não funcionou. Suba um degrau; não repita o mesmo tipo de remédio.
+1. Um agente que lê o código, a árvore de pastas, a configuração e a documentação oficial erraria sem ela?
+2. Nenhuma checagem recusa o erro, nem pode recusar a custo razoável?
+3. Nenhuma linha existente cobre o assunto? Se cobre, edite-a.
 
-1. **Texto:** o passo 4.
-2. **Posição:** leve a instrução para o momento da ação: o modelo da encomenda, `ia/executor.md › Antes de retornar` ou `ia/fluxo.md › 4. Confira`.
-3. **Ferramenta:** regra verificável sem exceção caso a caso vira checagem do produto (lint, tipo, teste), citada no `Garantia:` da regra.
-4. **Humano:** terceiro registro do mesmo sintoma. Leve o diagnóstico e as opções.
+Nunca entra (`AGENTS.md › Leis`, 5):
 
-## Só com o humano
+- onde algo fica, como se chama, o que recebe, como foi feito, o que existe. Não há catálogo: a árvore de pastas lista as unidades pelo nome (`ia/regras/codigo.md › C11`);
+- a forma de um tipo de arquivo: o exemplar é código, e a encomenda o aponta;
+- histórico, que é do `git log`; intenção ainda não implementada, que é do plano do projeto.
 
-Aplique sozinho tudo, menos:
+Teto: assunto com mais de 150 linhas não recebe entrada antes de enxugar (sai o que virou checagem ou o que o código passou a mostrar) ou de se dividir (`Assunto novo`).
 
-- mudar o que uma regra exige, ou removê-la. Esclarecer a redação sem mudar a exigência não conta;
-- regra nova que transforma em dívida código que hoje cumpre, ou que escolhe entre duas formas vivas;
-- a tabela de `ia/regras/bibliotecas.md`;
-- as `Leis` de `AGENTS.md`;
-- modelo, esforço, ferramentas e permissões em `.claude/` e `.codex/`. Exceto: a regra `Edit(…)` de um protegido novo.
+### Onde mora
 
-Porque: são decisões do humano, e um erro nelas se repete em toda tarefa.
-
-Nesses casos:
-
-- Pedido explícito do humano já é a aprovação: aplique.
-- Sem pedido: siga a instrução vigente e leve a proposta pronta na entrega. Guarde-a em `ia/pendencias.md` até a resposta.
-- A tarefa não fecha cumprindo a vigente: é pergunta, agora.
-
-```markdown
-Proposta: <a mudança>
-Motivo: <o problema, com a evidência>
-Texto: <como a entrada ficaria>
-Impacto: <o que vira dívida, o que mais é tocado>
-Alternativas: <cada uma com a consequência, inclusive não mudar>
-```
-
-## Onde mora
-
-| O que é                                      | Lugar                               |
-| -------------------------------------------- | ----------------------------------- |
-| Obrigação ou proibição verificável no código | regra, em `ia/regras/<assunto>.md`  |
-| Forma a repetir igual                        | molde, no assunto                   |
-| O que o código não mostra e faria errar      | alerta, no assunto                  |
-| Código que descumpre uma regra               | `Dívida:` da regra                  |
-| Comando, porta, recurso, estado do projeto   | `ia/fatos.md`                       |
-| O que fica para depois                       | `ia/pendencias.md`                  |
-| Processo de um papel                         | o arquivo do papel, ou `ia/quando/` |
-| O que vale para todo agente                  | `AGENTS.md`                         |
-| Como rodar, para pessoas                     | `README.md` da aplicação            |
-
-Não mora em lugar nenhum: o que um agente acha lendo o código; histórico, que é do `git log`; intenção ainda não implementada.
+| O que é                                             | Lugar                               |
+| --------------------------------------------------- | ----------------------------------- |
+| Obrigação ou proibição verificável no código        | regra, em `ia/regras/<assunto>.md`  |
+| Armadilha que o código não mostra                   | alerta, no assunto                  |
+| Código que descumpre uma regra                      | `Dívida:` da regra                  |
+| Como instalar, rodar e checar                       | `README.md` da aplicação            |
+| O que só agente usa para operar e o README não traz | `ia/fatos.md`                       |
+| O que fica para depois e ninguém acharia            | `ia/pendencias.md`                  |
+| Processo de um papel                                | o arquivo do papel, ou `ia/quando/` |
+| O que vale para todo agente                         | `AGENTS.md`                         |
 
 ### Regra
 
@@ -106,75 +77,65 @@ Só com os rótulos que têm conteúdo, nesta ordem. O ID usa o prefixo do assun
 - Como: <detalhe para cumprir>
 - Exceto: <o caso permitido>
 - Garantia: <a checagem automática que a verifica>
-- Fonte: `<o arquivo que é a verdade; a regra aponta, não copia>`
+- Fonte: `<o arquivo que é a verdade, quando não se acha pelo nome>`
 - Dívida: `<caminho conferido que ainda descumpre>`
 ```
 
 - Sem `Garantia:`, quem garante é a auditoria.
+- A regra aponta, nunca descreve: `Fonte:` é um caminho, sem resumo do que há nele.
 - Se uma funcionalidade comum obriga a reescrever a regra, ela descreve implementação: reescreva-a como limite.
-
-### Molde
-
-```markdown
-### <nome>
-
-- Exemplar: `<caminho conferido>`
-- Como: <a forma ou a decisão a repetir>
-- Porque: <o que quebra sem ela>
-- Antes: `<caminho na forma antiga, que não se imita>`
-```
-
-- Entra: primeira instância de algo que vai se repetir; decisão que outras tarefas precisam repetir igual; qual de duas formas vivas é a atual.
-- Não entra: o que o código mostra sem ambiguidade, o que uma regra ou checagem já garante, escolha local.
 
 ### Alerta
 
 ```markdown
 ### <título curto>
 
-- Cuidado: <a armadilha ou o limite, e o que fazer>
+- Cuidado: <a armadilha, o que fazer e o caminho a que ela se refere>
 - Porque: <o motivo que o código não mostra>
 ```
 
-- Não entra: o que o código, a configuração ou a documentação oficial já dizem.
+- Entra: o que já custou um erro e voltaria a custar.
+- Sai: quando o código muda e a armadilha deixa de existir. Quem altera o caminho citado confere.
 
 ### Duas formas
 
-Duas formas de fazer a mesma coisa convivem no código:
+Duas formas de fazer a mesma coisa convivem no código, ou o humano trocou uma forma por outra:
 
 - Uma descumpre uma regra: é dívida; a atual é a outra.
-- As duas cumprem: a atual é a que acabou de ser usada, salvo motivo concreto para a outra (mais difundida, recomendada pela documentação).
-- Registre o molde, com `Exemplar:` na atual e `Antes:` na outra.
+- As duas cumprem: a atual é a que o humano pediu ou a que acabou de ser usada, salvo motivo concreto para a outra. Registre uma regra de uma linha, com `Fonte:` na atual e `Dívida:` na outra.
 - A escolha muda o produto: é pergunta.
-
-### Convenção trocada
-
-O humano trocou uma forma estabelecida por outra:
-
-1. Atualize a regra ou o molde.
-2. Uma exploração `executor-1` lista o código que passou a descumprir: vai para o `Dívida:`.
-3. O exemplar antigo passa para `Antes:`. Sem exemplar novo ainda, a próxima encomenda é avisada de que cria a primeira instância.
-4. A migração do código antigo é pendência, salvo se o pedido a cobre.
+- Migrar o código antigo é pendência, salvo se o pedido cobre.
 
 ### Assunto novo
 
-- Crie quando regras ou moldes novos não seriam lidos por nenhum gatilho existente: o arquivo em `ia/regras/`, com `Regras`, `Moldes` e `Alertas`, e a linha na tabela de `AGENTS.md`.
+- Crie quando regras novas não seriam lidas por nenhum gatilho existente, ou quando um assunto passa do teto: o arquivo em `ia/regras/`, com `Regras` e, se houver, `Alertas`, e a linha na tabela de `AGENTS.md`.
 - Gatilho mecânico: extensão, pasta, tipo de arquivo, dependência.
-- Assunto que pesa em encomendas que usam só parte dele: divida. As regras mantêm o ID.
+- Na divisão, as regras mantêm o ID.
+
+## Só com o humano
+
+Aplique sozinho tudo, menos:
+
+- mudar o que uma regra exige, ou removê-la. Esclarecer a redação sem mudar a exigência não conta;
+- regra nova que transforma em dívida código que hoje cumpre, ou que escolhe entre duas formas vivas;
+- a tabela de `ia/regras/bibliotecas.md`;
+- as `Leis` de `AGENTS.md`;
+- modelo, esforço, ferramentas e permissões em `.claude/` e `.codex/`. Exceto: a regra `Edit(…)` de um protegido novo.
+
+Porque: são decisões do humano, e um erro nelas se repete em toda tarefa.
+
+- Pedido explícito do humano já é a aprovação: aplique.
+- Sem pedido: siga a instrução vigente e leve a proposta na entrega: a mudança, o motivo com a evidência, o texto novo, o que vira dívida e as alternativas. Guarde-a em `ia/pendencias.md` até a resposta.
+- A tarefa não fecha cumprindo a vigente: é pergunta, agora.
 
 ## Como escrever
 
-- Curto e direto. Se uma frase de poucas palavras dá o contexto, não use um parágrafo.
-- Nunca encurte a ponto de admitir duas leituras.
-- Uma obrigação por item.
+- Curto e direto, sem admitir duas leituras. Uma obrigação por item.
 - Obrigação no imperativo. Proibição com `Nunca` ou `Não`. Exceção em `Exceto:`. Motivo em `Porque:`, só quando não é óbvio.
 - Cada coisa num lugar só. Nos outros, aponte: `arquivo › título`.
-- Edite a linha que já cobre o assunto antes de criar outra. Apague o que perdeu o objeto.
+- Edite a linha que já cobre o assunto antes de criar outra. Apague o que perdeu o objeto. Seção vazia não se escreve.
 - Só o estado atual: sem datas, planos ou histórico.
-  - Exceto: `ia/diario.md` e `ia/pendencias.md`.
-- Caminhos, comandos e identificadores entre crases, conferidos.
-- Tabela só com células curtas.
-- Títulos estáveis: outros arquivos os citam.
-- Mudou um título, um caminho, um ID ou o nome de um agente: busque as citações no repositório e atualize todas.
+- Caminhos, comandos e identificadores entre crases, conferidos. Tabela só com células curtas.
+- Títulos estáveis. Mudou um título, um caminho, um ID ou o nome de um agente: busque as citações no repositório e atualize todas.
 - `.claude/agents/` e `.codex/agents/` têm os mesmos agentes: mudou numa pasta, mude na outra.
 - Formato: `ia/fatos.md › Checagens`.

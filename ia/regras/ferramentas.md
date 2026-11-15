@@ -8,7 +8,7 @@ Arquivo de configuração de ferramenta escrito em JavaScript usa a extensão `.
 
 - Porque: a extensão declara o arquivo como módulo ES sem depender do campo `type` do `package.json`, e toda ferramenta o carrega do mesmo jeito.
 - Exceto:
-  - `.ts`, quando a versão instalada da ferramenta carrega configuração em TypeScript, pela documentação oficial dela;
+  - `.ts`, quando a versão instalada da ferramenta carrega configuração em TypeScript, pela documentação oficial dela. `.mts` quando ela carregaria o `.ts` como CommonJS;
   - a extensão que a ferramenta exige, quando ela não carrega `.mjs`.
 
 ### F2 · Exportação por constante
@@ -44,10 +44,11 @@ Fora o Perfectionist e as regras customizadas, as regras do ESLint vêm só das 
   - A configuração entra no projeto com a tecnologia (`ia/regras/bibliotecas.md › B2`) e sai com ela.
   - Quando a documentação oficial oferece mais de uma configuração, vale a que ela chama de recomendada.
 
-## Moldes
+### F6 · Docker identificado e isolado
 
-Nenhum.
+Todo recurso Docker do projeto leva o nome do projeto como prefixo e não colide com outros projetos da máquina.
 
-## Alertas
-
-Nenhum.
+- Porque: a máquina roda outros projetos em Docker, e nome ou porta repetidos misturam dados ou impedem de subir.
+- Como:
+  - O Compose declara `name`, e contêiner, volume, rede e imagem construída têm nome explícito com o prefixo.
+  - A porta publicada no host não é a padrão do serviço e vem do ambiente, com um valor padrão.

@@ -44,5 +44,5 @@ Trate cada um nesta ordem:
 2. **Classe.** Mantenha ou reclassifique com motivo (`ia/auditor.md › Procure`).
 3. **Escopo.**
    - No que a tarefa mudou: corrija nesta tarefa.
-   - No que a tarefa não tocou, inclusive `De passagem:`: vai para `ia/pendencias.md` e não bloqueia. Se for `quebra`, é pergunta na entrega, com recomendação.
+   - No que a tarefa não tocou, inclusive `De passagem:`: `quebra` vai para `ia/pendencias.md` e é pergunta na entrega, com recomendação; o resto se descarta. Não bloqueia.
 4. **Causa e correção.** `ia/quando/falha.md`. O campo `Pipeline:` é indício de causa `pipeline`, não prova: confira o trecho.
