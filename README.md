@@ -14,7 +14,7 @@ Modelo de uma pipeline de agentes de IA para o Claude Code e o Codex, pensada pa
 2. Abra uma sessão do Claude Code ou do Codex na raiz.
 3. Peça o que quer construir. Enquanto `ia/fatos.md` disser `modelo`, a sessão principal segue `ia/quando/inicio.md`.
 
-## Conferir o formato
+## Checagens
 
 ```sh
 npx prettier@3.6.2 --check .

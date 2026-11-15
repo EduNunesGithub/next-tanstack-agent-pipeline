@@ -34,6 +34,7 @@ Opacidade de cor é múltiplo de 0,1 (10%).
 Duração e atraso são múltiplos de 0,25s (250ms), incluindo zero.
 
 - Porque: ritmo consistente entre transições, animações e demais temporizações.
+- Vale para: também o padrão de uma biblioteca que o código usa sem sobrescrever, como o atraso de abertura de uma dica.
 
 ### V6 · Tipografia no tema
 
@@ -41,9 +42,8 @@ Tipografia é definida na fonte global de estilos ou no tema, por elemento semâ
 
 - Porque: ajuste global num lugar só e texto previsível.
 - Como:
-  - Sem tamanho avulso, altura de linha manual nem sobrescrita local de tamanho ou de altura de linha.
+  - Sem tamanho avulso, altura de linha manual nem sobrescrita local de tamanho, de altura de linha ou de peso.
   - Espaçamento entre letras usa os tokens oficiais `tracking-*` do Tailwind. Nunca `letter-spacing` avulso.
-- Fonte: a fonte global de estilos ou o tema, na configuração da versão instalada. Registre o caminho aqui quando existir.
 
 ### V7 · Espaço com `gap`
 
@@ -77,10 +77,8 @@ Texto exibido ao usuário é em português do Brasil.
 - Porque: a interface fala o idioma de quem a usa.
 - Vale para: rótulos, mensagens (inclusive de validação e de erro), texto alternativo e atributos de acessibilidade como `alt` e `aria-label`, título e metadados da página.
 
-## Moldes
+### V12 · Estado nunca só por cor
 
-Nenhum.
+Estado da interface (ativo, selecionado, gravidade, situação) se distingue também por ícone, rótulo, marca ou peso, não só pela cor.
 
-## Alertas
-
-Nenhum.
+- Porque: quem não percebe a diferença de cor precisa ver o estado.

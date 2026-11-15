@@ -31,7 +31,7 @@ Encomendas com interseção não correm juntas: uma espera a outra. Só conta o 
 ### Marcos
 
 - Exemplar que outras encomendas vão replicar: aceite-o antes de despachar as réplicas.
-- Marco arriscado, como o primeiro molde ou um fixo compartilhado: auditoria antecipada antes das réplicas (`ia/quando/risco.md › Quando`).
+- Marco arriscado, como a primeira ocorrência de uma forma ou um fixo compartilhado: auditoria antecipada antes das réplicas (`ia/quando/risco.md › Quando`).
 - Estado que pede checagens completas: os próximos despachos esperam elas passarem.
 
 ## Agregadores

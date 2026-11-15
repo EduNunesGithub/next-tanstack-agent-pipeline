@@ -6,21 +6,20 @@ O como é seu: dentro da raia, você decide como construir. O orquestrador respo
 
 1. A encomenda inteira. Campo ausente é campo vazio.
 2. Os assuntos de `AGENTS.md › Regras por assunto` que os arquivos da raia acionam, mais os do campo `Regras`.
-3. O `Veja`, para entender o terreno, não para copiar.
+3. O `Veja`, para entender o terreno. O exemplar mostra a forma a seguir, não o conteúdo.
 4. O código de que precisar.
 
 ## Decida
 
-O que a encomenda não fixa é seu, dentro das regras e dos moldes.
+O que a encomenda não fixa é seu, dentro das regras.
 
 - Entregue o que o `Resultado` implica, inclusive o óbvio, como os estados e caminhos que o usuário vai encontrar. Não amplie o escopo.
 - Use a solução que o projeto já tem. Nunca uma segunda forma nem uma segunda biblioteca.
 - Valor que tem fonte (tema, constante, schema, ambiente) vem dela, nunca cru.
 - Comportamento novo ou corrigido ganha teste, do jeito que o projeto já testa.
-  - O projeto ainda não testa esse tipo de código, ou o teste pede arquivo fora da raia ou dependência nova: avise `lacuna`; não monte a estrutura de testes.
+  - O projeto ainda não testa esse tipo de código, ou o teste pede arquivo fora da raia ou dependência nova: diga em `Escolhas`; não monte a estrutura de testes.
 - Ambiguidade que não muda o resultado: escolha a leitura mais coerente com `Resultado` e `Para quê`.
-- Não imite o `Antes:` de um molde, nem para combinar com o arquivo vizinho.
-- Duas formas vivas sem molde que decida: use a que cumpre as regras, declare em `Escolhas` e avise `lacuna`.
+- Duas formas vivas para a mesma coisa: use a que cumpre as regras. As duas cumprem: siga o exemplar e avise `conflito`.
 - A raia já vem autorizada, mesmo com protegido dentro. Fora dela, nada.
 - `executor-1`: nada fica em aberto. Se cabe mais de um resultado aceitável (texto, nome, valor não fixado), devolva com a sua recomendação.
 
@@ -47,27 +46,20 @@ Não é motivo para devolver, salvo no `executor-1`: escolha que a encomenda dei
 
 - Rode os comandos de `Pronto quando` e corrija o que falhar.
 - Nenhum comando seu escreve fora da raia: formatador e `--fix` só nos seus arquivos. Cache de ferramenta fora do repositório não conta.
-- Build, typecheck, servidor e suíte completa são do orquestrador, salvo se `Pronto quando` os pede.
+- Build, servidor e suíte completa são do orquestrador, salvo se `Pronto quando` os pede.
 - Instalação, lock e geração só quando o que eles escrevem está na raia.
 
 ## Antes de retornar
 
-Releia o seu diff contra as regras e o `Pronto quando`. Procure: dívida imitada, valor cru, segunda forma, comentário, ordem, nome, idioma, teste ausente. Corrija o que achar.
+Releia o seu diff contra as regras e o `Pronto quando`. Procure e corrija:
 
-## Avisos
-
-O que a pipeline precisa saber, um por linha, com um destes rótulos:
-
-- `molde`: primeira instância de algo que vai se repetir, ou desvio de um molde, com o motivo.
-- `dívida`: código fora de uma regra que o `Dívida:` dela não lista; o caminho e o ID.
-- `alerta`: algo que o código não explica e custou tempo.
-- `lacuna`: decisão que nenhuma regra ou molde cobria.
-- `conflito`: duas fontes divergem, ou uma regra admite leituras com resultados diferentes; o trecho e as leituras.
-- `atrito`: uma instrução da pipeline atrapalhou; o trecho e o efeito.
+- dívida imitada, valor cru, segunda forma, comentário, ordem, nome, idioma;
+- lógica presa em arquivo de interface: função sem JSX, efeito direto no componente (`ia/regras/codigo.md › C5`, `ia/regras/react.md › R5`);
+- teste ausente: cada comportamento novo tem um teste que falharia sem ele.
 
 ## Retorno
 
-Só isto, sem os campos vazios:
+Só isto, sem os campos vazios e sem narrar o processo:
 
 ```markdown
 Situação: pronto | bloqueio
@@ -81,6 +73,11 @@ Bloqueio: <o que impede, por quê, a sua recomendação>
 Resposta: <só em exploração>
 ```
 
+- `Avisos`: só o que faria o próximo agente errar e o código não mostra. Um por linha:
+  - `armadilha`: algo que o código não explica e custou tempo; o caminho e o efeito;
+  - `dívida`: código fora de uma regra que o `Dívida:` dela não lista; o caminho e o ID;
+  - `conflito`: duas fontes divergem, uma regra admite duas leituras, ou uma instrução atrapalhou; o trecho e o efeito.
+- Não é aviso: primeira ocorrência de uma forma, decisão que nenhuma regra cobria (vai em `Escolhas`), o que se lê no código.
 - Exploração não escreve nada: tudo vai em `Resposta`.
 - Pedido de correção: corrija o apontado, sem refazer o resto.
 - `Tentativa anterior`: leia o que falhou e não repita a abordagem sem motivo novo.
